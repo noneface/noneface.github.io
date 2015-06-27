@@ -1,12 +1,22 @@
-.HideFocus {
- hide-focus: expression(this.hideFocus=true);  /* for ie 5+ */
- outline: none;  /* for firefox 1.5 + */
-}
-body{
-	background-color: #696969;
+.menu-button {
+	color: $white;
+	font-size: 24px;
+	position: fixed;
+	top: 10px;
+	left: 20px;
+	cursor: pointer;
+	line-height: 1em;
+	padding: 10px;
+	background-color: $dark;
+	z-index: 100;
+	@media (min-width: $screen-sm-min) {
+		top: 20px;
+		left: 40px;
+	}
 }
 
-ul {
+
+ul li{
     list-style-type: none;
 }
 h4{
@@ -20,17 +30,6 @@ h5{
 	text-decoration: none;
 }
 
-.fa-bars {
-	color: white;
-	margin-left: 50px;
-	line-height: 4;
-	font-size:40px;
-	outline:none;
-}
-.fa-bars:hover {
-	color:#778899;
-	text-decoration: none;
-}
 .fa-home{
 	font-size: 20px;
 	float: left;
@@ -74,15 +73,11 @@ h5{
 	color: #DCDCDC;
 }
 .menu-button{
-	width: 40px;
+	top:40px;
+	left:20px;
+	margin-left:40px;
 }
 
-.content{
-	height: 60%;
-}
-.footer{
-	height: 10%;
-}
 .img-circle{
 	width: 150px;
 	height: 150px;
@@ -91,7 +86,18 @@ h5{
 #my-menu a{
 	text-align: center;
 }
-
 .content{
-	
+	margin:0 10%;
+	padding:5% 20%;
+}
+.articles a{
+	color:black;
+	font-size:25px;
+	line-height:1.5;
+	cursor: pointer;
+	text-decoration: none;
+}
+.articles h1{
+	margin-left:20px;
+	margin-bottom:25px;
 }

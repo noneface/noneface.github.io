@@ -11,3 +11,5 @@ github_username:  noneface
 
 # Build settings
 markdown: kramdown
+post_limit: 10
+paginate: 8

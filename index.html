@@ -1,5 +1,40 @@
 ---
 layout: default
 ---
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-12 content">
 
-<p>Hello world</p>
+            <div class="articles">
+
+              <h1>Latest Articles<a> &nbsp&nbsp @Noneface</a></h1>
+              <ul>
+                  {% for post in site.posts | limit: site.post_limit %}
+
+                      <li>
+			<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
+                          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                      </li>
+
+                  {% endfor %}
+		</ul> 
+<div class="switchpage">
+    {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+    <a href="../">◣ 上 • 一页</a>
+    {% else %}
+    <a href="/page{{ paginator.previous_page }}"> <-prev&nbsp</a>
+    {% endif %}
+    {% else %}
+    <a> <-end&nbsp </a>
+    {% endif %}
+    {% if paginator.next_page %}
+    <a href="/page{{ paginator.next_page }}">&nbsp next-> </a>
+    {% else %}
+    <a> &nbspend-> </a>
+    {% endif %}
+</div>
+		</div>
+            </div>
+</div>
+</div>
