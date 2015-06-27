@@ -52,7 +52,7 @@ h5{
 .fa-github{
 	color: white;
 	font-size: 25px;
-	margin-left: 100px;
+	margin-left: 30%;
 }
 .fa-github:hover{
 	color: #DCDCDC
@@ -60,7 +60,7 @@ h5{
 .fa-weibo{
 	color: white;
 	font-size: 25px;
-	margin-left: 60px;
+	margin-left:10%;
 }
 .fa-weibo:hover{
 	color: #DCDCDC;
@@ -68,7 +68,7 @@ h5{
 .fa-leanpub{
 	color: white;
 	font-size: 25px;
-	margin-left: 60px;
+	margin-left: 10%;
 }
 .fa-leanpub:hover{
 	color: #DCDCDC;
@@ -83,12 +83,10 @@ h5{
 .footer{
 	height: 10%;
 }
-.menu-top{
+.img-circle{
 	width: 150px;
 	height: 150px;
-	margin-left: 130px;
-	margin-right: 130px;
-	margin-top: 40px;
+	margin-left:30%;
 }
 #my-menu a{
 	text-align: center;
