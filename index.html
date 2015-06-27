@@ -7,13 +7,13 @@ layout: default
 
             <div class="articles">
 
-              <h1>Latest Articles<a> &nbsp&nbsp @Noneface</a></h1>
+              <h1>Latest Articles<span class="name">  &nbsp&nbsp @Noneface</span></h1>
               <ul>
                   {% for post in site.posts | limit: site.post_limit %}
 
                       <li>
 			<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
-                          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                          <a href="{{ post.url }}">{{ post.title }}</a>
                       </li>
 
                   {% endfor %}

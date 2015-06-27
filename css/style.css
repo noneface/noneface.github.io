@@ -92,10 +92,13 @@ h5{
 }
 .articles a{
 	color:black;
-	font-size:25px;
+	font-size:20px;
 	line-height:1.5;
 	cursor: pointer;
 	text-decoration: none;
+}
+.name{
+	font-size:15px;
 }
 .articles h1{
 	margin-left:20px;
