@@ -1,0 +1,99 @@
+.HideFocus {
+ hide-focus: expression(this.hideFocus=true);  /* for ie 5+ */
+ outline: none;  /* for firefox 1.5 + */
+}
+body{
+	background-color: #696969;
+}
+
+ul {
+    list-style-type: none;
+}
+h4{
+	text-align: center;
+}
+h5{
+	text-align: center;
+}
+#my-menu a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.fa-bars {
+	color: white;
+	margin-left: 50px;
+	line-height: 4;
+	font-size:40px;
+	outline:none;
+}
+.fa-bars:hover {
+	color:#778899;
+	text-decoration: none;
+}
+.fa-home{
+	font-size: 20px;
+	float: left;
+}
+.fa-user{
+	font-size: 20px;
+	float: left;
+}
+
+.fa-pencil-square-o{
+	font-size: 20px;
+	float: left;
+}
+
+.fa-file-code-o{
+	font-size: 20px;
+	float: left;
+}
+.fa-github{
+	color: white;
+	font-size: 25px;
+	margin-left: 100px;
+}
+.fa-github:hover{
+	color: #DCDCDC
+}
+.fa-weibo{
+	color: white;
+	font-size: 25px;
+	margin-left: 60px;
+}
+.fa-weibo:hover{
+	color: #DCDCDC;
+}
+.fa-leanpub{
+	color: white;
+	font-size: 25px;
+	margin-left: 60px;
+}
+.fa-leanpub:hover{
+	color: #DCDCDC;
+}
+.menu-button{
+	width: 40px;
+}
+
+.content{
+	height: 60%;
+}
+.footer{
+	height: 10%;
+}
+.menu-top{
+	width: 150px;
+	height: 150px;
+	margin-left: 130px;
+	margin-right: 130px;
+	margin-top: 40px;
+}
+#my-menu a{
+	text-align: center;
+}
+
+.content{
+	
+}
