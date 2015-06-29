@@ -77,11 +77,16 @@ h5{
 	left:20px;
 	margin-left:40px;
 }
-
+.img{
+	text-align:center;
+	width:100%;
+}
+.img1{
+	margin:0 auto;
+}
 .img-circle{
-	width: 150px;
-	height: 150px;
-	margin-left:30%;
+	width:150px;
+	height:150px;
 }
 #my-menu a{
 	text-align: center;
