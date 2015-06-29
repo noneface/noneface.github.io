@@ -25,6 +25,9 @@ h4{
 h5{
 	text-align: center;
 }
+.my-menu{
+	text-align:center;
+}
 #my-menu a:hover {
 	color: white;
 	text-decoration: none;
@@ -51,7 +54,6 @@ h5{
 .fa-github{
 	color: white;
 	font-size: 25px;
-	margin-left: 30%;
 }
 .fa-github:hover{
 	color: #DCDCDC
@@ -78,15 +80,14 @@ h5{
 	margin-left:40px;
 }
 .img{
-	text-align:center;
-	width:100%;
-}
-.img1{
 	margin:0 auto;
 }
 .img-circle{
 	width:150px;
 	height:150px;
+}
+.link{
+	margin:0 auto;
 }
 #my-menu a{
 	text-align: center;
