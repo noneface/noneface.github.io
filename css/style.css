@@ -10,8 +10,8 @@
 	background-color: $dark;
 	z-index: 100;
 	@media (min-width: $screen-sm-min) {
-		top: 20px;
-		left: 40px;
+		top: 10px;
+		left: 20px;
 	}
 }
 
@@ -77,7 +77,6 @@ h5{
 .menu-button{
 	top:40px;
 	left:20px;
-	margin-left:40px;
 }
 .img{
 	margin:0 auto;
@@ -98,15 +97,12 @@ h5{
 }
 .articles a{
 	color:black;
-	font-size:20px;
+	font-size:25px;
 	line-height:1.5;
 	cursor: pointer;
 	text-decoration: none;
 }
-.name{
-	font-size:15px;
-}
-.articles h1{
-	margin-left:20px;
-	margin-bottom:25px;
+
+.articles-title a{
+	font-size:35px;
 }
