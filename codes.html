@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<div class="row">
+<div class="col-md-12 content">
+
+       <div class="articles">
+	<div class="articles-title">	
+              <a href="/">Latest Articles</a>
+		<small>  &nbsp&nbsp @Noneface</small>
+		<hr>
+	   {% for post in site.tags.codes %}
+	<ul>	
+		<li>
+		<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
+		<a href="{{ post.url }}" title="{{ post.title }}"> {{ post.title}}</a>
+		</li>
+	</ul> 
+	{% endfor %}
+        </div>
+	<hr>
+<div class="switchpage">
+    {% if paginator.previous_page %}
+    {% if paginator.page == 2 %}
+    <a href="../"><-prev</a>
+    {% else %}
+    <a href="/page{{ paginator.previous_page }}"> <-prev&nbsp</a>
+    {% endif %}
+    {% else %}
+    <a> <-end&nbsp </a>
+    {% endif %}
+    {% if paginator.next_page %}
+    <a href="/page{{ paginator.next_page }}">&nbsp next-> </a>
+    {% else %}
+    <a> &nbspend-> </a>
+    {% endif %}
+</div>
+
+
+</div>
+		</div>
+            </div>
+</div>
