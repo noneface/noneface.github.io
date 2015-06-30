@@ -1,11 +1,8 @@
-# Site settings
 title: Noneface
 email: 956905550@qq.com
 baseurl: /  # the subpath of your site, e.g. /blog/
 github_username:  noneface
-
-# Build settings
-markdown: redcarpet
-post_limit: 10
+markdown: kramdown
 paginate: 8
+paginate_path: "/page:num" 
 highlighter: pygments
