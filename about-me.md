@@ -3,7 +3,7 @@ layout: default
 ---
 <div class="row">
   <div class="col-md-12 content">	
-    <div class="about">
+    <div class="about" style="padding-top:3%;">
     </div>
 	<h1 style="text-align:center;line-height:3;">两情若是久长时</h1>
 
