@@ -5,7 +5,7 @@ tag: codes
 ---
 
 *	已经开始正式的学习python。
-×	life is short，i use python.
+*	life is short，i use python.
 * 	几天时间把python的基本语法学习了一遍.一门动态的语言,不需要在声明变量的同时,声明它的类型.
 *	然后早就对爬虫有兴趣的我参照网上的教程写了一个简易爬去糗事百科的小爬虫.
 *	代码如下:
