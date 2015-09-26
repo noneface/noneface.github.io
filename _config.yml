@@ -3,6 +3,6 @@ email: 956905550@qq.com
 baseurl: /  # the subpath of your site, e.g. /blog/
 github_username:  noneface
 markdown: kramdown
-paginate: 15
+paginate: 13
 paginate_path: "/page:num" 
 highlighter: pygments
