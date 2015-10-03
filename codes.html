@@ -9,36 +9,22 @@ layout: default
               <a href="/">Latest Articles</a>
 		<small>  &nbsp&nbsp @Noneface</small>
 		<hr>
-	   {% for post in site.tags.codes %}
+	</div>
 	<ul>	
+	
+	   {% for post in site.tags.codes %}
+
 		<li>
 		<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
 		<a href="{{ post.url }}" title="{{ post.title }}"> {{ post.title}}</a>
 		</li>
-	</ul> 
+	
 	{% endfor %}
+
+	</ul> 
         </div>
 	<hr>
 </div>
-{% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">上一页</a>
-{% endif %}
-{% for page in (1..paginator.total_pages) %}
-    {% if page == paginator.page %}
-      <span class="active">{{ page }}</span>
-    {% elsif page == 1 %}
-      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-    {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-    {% endif %}
-{% endfor %}
-{% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a>
-{% endif %}     
-
-
-
 </div>
 		</div>
             </div>
-</div>
