@@ -12,46 +12,46 @@
 <body>
 	<nav id="my-menu">
 		<div class="my-menu"> 
-		<div class="img">		
-			<img class="img-circle" src="/images/head.jpg">
-		</div>
+			<div class="img">		
+				<img class="img-circle" src="/images/head.jpg">
+			</div>
 			<h4>Noneface | Hack4fun</h4>
-         <ul>
-            <li><a href="{{ site.baseurl }}" ><i class="fa fa-home"></i>Home</a></li>
-            <li><a href="{{ site.baseurl }}codes.html" ><i class="fa fa-file-code-o"></i>Code</a></li>
-            <li><a href="{{ site.baseurl }}notes.html" ><i class="fa fa-pencil-square-o"></i>Notes</a></li>
-            <li><a href="{{ site.baseurl }}about-me.html" ><i class="fa fa-user"></i>About me</a></li>
-         </ul>
+			<ul>
+				<li><a href="{{ site.baseurl }}" ><i class="fa fa-home"></i>Home</a></li>
+				<li><a href="{{ site.baseurl }}codes.html" ><i class="fa fa-file-code-o"></i>Code</a></li>
+				<li><a href="{{ site.baseurl }}notes.html" ><i class="fa fa-pencil-square-o"></i>Notes</a></li>
+				<li><a href="{{ site.baseurl }}about-me.html" ><i class="fa fa-user"></i>About me</a></li>
+			</ul>
 
-         <div class="link">
-         	</br></br></br>
-         	<a target="_new" href="http://www.github.com/noneface"><i class="fa fa-github"></i></a>
-         	<a target="_new" href="http://weibo.com/noneface"><i class="fa fa-weibo"></i></a>
-         	<a target="_new" href="http://www.zhihu.com"><i class="fa fa-leanpub"></i></a>
-         </div>
-         <h5></br></br>Never forget the beginner's mind</h5>
-        </div>
-    </nav>
+			<div class="link">
+			
+			<a target="_new" href="http://www.github.com/noneface"><i class="fa fa-github"></i></a>
+			<a target="_new" href="http://weibo.com/noneface"><i class="fa fa-weibo"></i></a>
+			<a target="_new" href="http://www.zhihu.com"><i class="fa fa-leanpub"></i></a>
+			</div>
+			<h5>Never forget the beginner's mind</h5>
+		</div>
+</nav>
 
-	<div class="menu-button" href="#menu" style="outline:none;">
-		<i class="fa fa-bars" style="font-size:40px;"></i>
-	</div>
-	<div class="container-fluid">
-		{{ content }}
-	</div>
-	<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="{{ site.baseurl }}css/jquery.mmenu.min.all.js"></script>
-	<script type="text/javascript">
-	   $(document).ready(function() {
-	      $("#my-menu").mmenu().on( "closed.mm", function() {
-	            $(".menu-button").show();
-	         });
-	      $(".menu-button").click(function() {
-	        $(".menu-button").hide();
-	        $("#my-menu").trigger("open.mm");
-	      });
-	   });
-	</script>
+<div class="menu-button" href="#menu" style="outline:none;">
+	<i class="fa fa-bars" style="font-size:40px;"></i>
+</div>
+<div class="container-fluid">
+	{{ content }}
+</div>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ site.baseurl }}css/jquery.mmenu.min.all.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#my-menu").mmenu().on( "closed.mm", function() {
+			$(".menu-button").show();
+		});
+		$(".menu-button").click(function() {
+			$(".menu-button").hide();
+			$("#my-menu").trigger("open.mm");
+		});
+	});
+</script>
 
 </body>
 </html>

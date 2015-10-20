@@ -2,28 +2,23 @@
 layout: default
 ---
 <div class="row">
-<div class="col-md-12 content">
-
-       <div class="articles">
-	<div class="articles-title">	
-              <a href="/">Latest Articles</a>
-		<small>  &nbsp&nbsp @Noneface</small>
-		<hr>
+	<div class="col-md-12 content">
+		<div class="articles">
+			<div class="articles-title">	
+				<a href="/">Latest Articles</a>
+				<small>  &nbsp&nbsp @Noneface</small>
+				<hr>
+			</div>
+			<ul>	
+				{% for post in site.tags.notes %}
+				<li>
+					<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
+					<a href="{{ post.url }}" title="{{ post.title }}"> {{ post.title}}</a>
+				</li>
+				{% endfor %}
+			</ul> 
+			<hr>
+		</div>
 	</div>
-	<ul>	
-		
-	   {% for post in site.tags.notes %}
+</div>
 
-		<li>
-		<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
-		<a href="{{ post.url }}" title="{{ post.title }}"> {{ post.title}}</a>
-		</li>
-	
-	{% endfor %}
-
-	</ul> 
-	<hr>
-</div>
-</div>
-</div>
-</div>
