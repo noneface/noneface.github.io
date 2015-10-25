@@ -28,11 +28,11 @@ ser.flushInput()  #清除缓存区的数据
 *  又是一个python的库。 matplotlib，绘图功能强大的库。
 *  matplotlib库的安装有点麻烦,需要安装部分辅助的库,过程如下。
 
-<code>pip install numpy</code>
-<code>pip install pyparsing</code>
-<code>pip install pytz</code>
-<code>pip install six</code>
-<code>pip install python-dateutil</code>
+<code>pip install numpy</code></br>
+<code>pip install pyparsing</code></br>
+<code>pip install pytz</code></br>
+<code>pip install six</code></br>
+<code>pip install python-dateutil</code></br>
 <code>pip install matplotlib</code>
 
 {% highlight python %}
