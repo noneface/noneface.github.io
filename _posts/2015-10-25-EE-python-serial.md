@@ -44,7 +44,7 @@ plt.show()
 
 *  效果是这样的。
 
-*  <img src="./images/figure1.png">
+*  <img src="/images/figure1.png">
 
 *  如果我们需要做成动态更新的话，需要使用到plt.pause(time),time为绘图时所需要的一个时间，来给figure有时间显示和绘图。
 {% highlight python %}
@@ -61,7 +61,7 @@ while True:
 	plt.plot(y) #将list传入plot画图
 	plt.pause(0.01) # 这个为停顿0.01s，能得到产生实时的效果
 {% endhighlight %}
-*  <img src="./images/figure2.png" ><img src="./images/figure3.png" >
+*  <img src="/images/figure2.png" ><img src="/images/figure3.png" >
 
 *  接下来只需要把从串口上读取到的数据，传到绘图功能里面。然后进行实时绘图
 *  这里接收到的数据是一个加速度传感器发来的加速度。
