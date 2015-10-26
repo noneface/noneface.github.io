@@ -73,7 +73,7 @@ import serial
 ser = serial.Serial(2)  # 单片机的串口号为3，这里从0开始
 plt.ion()  #  开启matplotlib的交互模式
 plt.xlim(0,50)  #首先得设置一个x轴的区间 这个是必须的
-plt.ylim(-19.58，19.58) # y轴区间 
+plt.ylim(-19.58,19.58) # y轴区间 
 acc_speed = []
 i = 0  #计数。然x轴能到了初始状态的最大值能进行改变
 while True:
