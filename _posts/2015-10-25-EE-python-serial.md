@@ -10,9 +10,9 @@ tag: codes
 *  首先，我们得获取到单片机的串口，然后才能获取的从单片机发送的数据。
 *  python有一个叫做pyserial的库。直接通过串口和单片机进行交互。
 
-<h4>安装pyserial</h4>  
+<h3>安装pyserial</h3>  
 <code>pip install pyserial</code>
-<h4>pyserial使用方法</h4>
+<h3>pyserial使用方法</h3>
 {% highlight python %}
 #!/usr/bin/env python
 import serial
@@ -23,7 +23,7 @@ ser.flushInput()  #清除缓存区的数据
 
 *  有这几个方法，我们就已经能够正常的获取到串口发来的数据。
 
-<h4>安装matplotlib</h4>
+<h3>安装matplotlib</h3>
 *  其次，将获取到的数据,绘制成实时的数据。
 *  又是一个python的库。 matplotlib，绘图功能强大的库。
 *  matplotlib库的安装有点麻烦,需要安装部分辅助的库,过程如下。
@@ -38,7 +38,7 @@ ser.flushInput()  #清除缓存区的数据
 {% highlight python %}
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
-plt.plot([0,3,1,3])  #plt为一个类，plot为绘制成折线图，其中如果只穿一个参数的话，默认为y轴的数据。x轴数据自动调整。
+plt.plot([0,3,1,3])  #plt为一个类，plot为绘制成折线图，其中如果只传一个参数的话，默认为y轴的数据。x轴数据自动调整。
 plt.show()
 {% endhighlight %}
 
