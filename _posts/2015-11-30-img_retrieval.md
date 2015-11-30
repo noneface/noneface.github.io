@@ -17,7 +17,7 @@ tag: codes
 *  在LMgist中，文档写的已经十分清楚了，利用LMgist函数，计算出每张图片的特征向量。经过测试，产生的特征是512维的向量。
 *  由于对matlab不是十分熟悉，一边看着作者提供的文档，一边百度一些matlab的语法问题。写了一个matlab的函数，能够提取传入图片的特征，并保持成文件。检索的工作，就全部放在python中完成。
 
-*	<h5>matlab提取GIST特征代码如下:</h5>
+*	<h3>matlab提取GIST特征代码如下:</h3>
 
 {% highlight matlab %}
 function  get_gist(imgname)
