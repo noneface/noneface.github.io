@@ -147,7 +147,7 @@ for row in voc:
 
 *  到此，词典已经有了，接下来就是对每张图片的词频进行统计，构造bow特征。
 *  实现代如下:
-{% highlght python %}
+{% highlight python %}
 #coding:utf8
 import os
 import numpy as np
