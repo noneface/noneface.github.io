@@ -17,7 +17,7 @@ tag: codes
 *  在LMgist中，文档写的已经十分清楚了，利用LMgist函数，计算出每张图片的特征向量。经过测试，产生的特征是512维的向量。
 *  由于对matlab不是十分熟悉，一边看着作者提供的文档，一边百度一些matlab的语法问题。写了一个matlab的函数，能够提取传入图片的特征，并保持成文件。检索的工作，就全部放在python中完成。
 
-*	<h3>matlab提取GIST特征代码如下:</h3>
+*	matlab提取GIST特征代码如下:
 
 {% highlight matlab %}
 function  get_gist(imgname)
@@ -46,8 +46,8 @@ end
 {% endhighlight %}
 
 *  接下来的工作就是将图像库中的图片特征提取出来。又是一个批量化操作的工作，就交给ptyhon来实现。
-*  应为matlab支持在cmd中以命令行的形式调用matlab commond line来运行matlab程序。那么就可以用一行命令来实现matlab的GIST特征提取。
-*  如:matlab -nojvm -nosplash -r "gist_m(''//参数图片名字)；exit"  -nojvm  不运行matlab的图形界面 -nosplash 不显示matlab打开时的图像 -r ""  传入在matlab commond line 里面运行的代码， get_gsit()所写好的提取GIST特征，代码，exit运行结束后关闭matlab commond line。
+*  因为matlab支持在cmd中以命令行的形式调用matlab commond line来运行matlab程序。那么就可以用一行命令来实现matlab的GIST特征提取。
+*  如:matlab -nojvm -nosplash -r "gist_m(''//参数图片名字)；exit"  -nojvm  不运行matlab的图形界面 -nosplash 不显示matlab打开时的图像 -r ""  传入在matlab commond line 里面运行的代码， get_gsit()所写好的提取GIST特征代码，exit运行结束后关闭matlab commond line。
 
 *  这种自动化的工作，交给python吧。
 
@@ -61,7 +61,6 @@ def get_all_img():	  #获取所有图片的文件名
 	AllImg = []
 	for line in fobj:
 		line = line.rstrip()
-		line = line.split()
 		AllImg.append(line)
 	return AllImg
 def call_matlab(AllImg):  #  利用os.system() 执行cmd中的命令。
@@ -69,7 +68,7 @@ def call_matlab(AllImg):  #  利用os.system() 执行cmd中的命令。
 	get_gist = "get_gist"
 	i = 0
 	for img in AllImg:
-		cmmd +=get_gist+"('"+img[0]+"');"
+		cmmd +=get_gist+"('"+img+"');"
 		if i==10:
 			cmmd +='exit"'
 			os.system(cmmd)
@@ -96,7 +95,7 @@ if __name__ == '__main__':
 *  获取到SIFT特征后，接下来就是构造词袋，统计词频做BOvW特征。
 
 *  <h3>BOvW特征</h3>
-*  由于用SIFT特征提取出来的特征是一个128*keypoints的矩阵。每张图片的keypoints数不孤独，对于图片相似度计算也有难度。于是引入了BOvW特征，利用kmeans聚类构造词典，统计每张图像的特征词频，对产生的词频进行相似度计算。
+*  由于用SIFT特征提取出来的特征是一个128*keypoints的矩阵。每张图片的keypoints数不固定，对图片相似度计算也有难度。于是引入了BOvW特征，利用kmeans聚类构造词典，统计每张图像的特征词频，对产生的词频进行相似度计算。
 *  python也有提供一个强大的机器学习库，scikit-learn:http://scikit-learn.org/stable/，其中提供了kmeans聚类方法。
 
 *   实现kmeans聚类代码如下:
