@@ -9,7 +9,7 @@ tag: codes
 *  对于图像的特征提取，matlab能提供的库远比python的库全面而且有效。
 *  在此次检索中，用到了两大不同类型的特征：全局特征，局部特征。全局特征，提取的是GIST特征。局部特征，提取的是SIFT特征进行构造BOW。
 
-*  <h4>GIST特征</h4>
+*  <h3>GIST特征</h3>
 
 *  GIST特征的简介:http://www.cnblogs.com/justany/archive/2012/12/06/2804211.html
 *  GIST特征的matlab实现:http://people.csail.mit.edu/torralba/code/spatialenvelope/
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 	main()
 {% endhighlight %}
 
-*  <h4>SIFT特征</h4>
+*  <h3>SIFT特征</h3>
 
 *  SIFT特征的简介:http://blog.csdn.net/abcjennifer/article/details/7639681
 *  SIFT特征的matlab实现:http://www.vlfeat.org/
@@ -95,7 +95,7 @@ if __name__ == '__main__':
 *  SIFT特征提取的工作就和GIST特征的过程一样了。构造matlab的SIFT特征提取函数，再用python调用cmd中的命令行，调用matlab commond line。
 *  获取到SIFT特征后，接下来就是构造词袋，统计词频做BOvW特征。
 
-*  <h4>BOvW特征</h4>
+*  <h3>BOvW特征</h3>
 *  由于用SIFT特征提取出来的特征是一个128*keypoints的矩阵。每张图片的keypoints数不孤独，对于图片相似度计算也有难度。于是引入了BOvW特征，利用kmeans聚类构造词典，统计每张图像的特征词频，对产生的词频进行相似度计算。
 *  python也有提供一个强大的机器学习库，scikit-learn:http://scikit-learn.org/stable/，其中提供了kmeans聚类方法。
 
