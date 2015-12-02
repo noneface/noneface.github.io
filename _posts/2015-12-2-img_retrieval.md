@@ -1,6 +1,6 @@
 ---
 layout: post
-title: matlab/python | 实现图像特征提取及检索/图像检索(2)
+title: matlab/python | 图像多特征融合检索/图像检索(2)
 tag: codes
 ---
 
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 	match_all()
 {% endhighlight %}
 
-*  以BOvW特征为例，一下是检索结果。
+*  以BOvW特征为例，以下是检索结果。
 *  <img src="/images/bow_result.png">
 
 <h3>平均检索准确率计算</h3>

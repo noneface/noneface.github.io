@@ -1,6 +1,6 @@
 ---
 layout: post
-title: matlab/python | 实现图像特征提取及检索/特征提取(1)
+title: matlab/python | 图像多特征融合检索/特征提取(1)
 tag: codes
 ---
 
