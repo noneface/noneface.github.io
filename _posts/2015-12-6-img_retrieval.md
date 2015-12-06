@@ -16,7 +16,7 @@ tag: codes
 
 *  首先，构建Graph是根据图片对应的下标。只需要将检索出来的结果，进行转换，转换成id就行。
 {% highlight python %}
-{
+
 	#coding:utf8
 
 import os
@@ -56,7 +56,7 @@ def process_result(Img_id):
 if __name__ == '__main__':
 	Img_id = set_id()
 	process_result(Img_id)
-}
+
 
 {% endhighlight %}
 
@@ -64,7 +64,7 @@ if __name__ == '__main__':
 *  然后进行构建Graph。
 
 {% highlight python %}
-{
+
 	import numpy
 import cPickle
 import re
@@ -178,7 +178,7 @@ if __name__ == '__main__':
     #img_name, result_idx, result_length = load_data("result_id\\result_gist_100")
 
     find_reciprocal_neighbors(img_name, result_idx, result_length, fn_result_reranking, fn_folder_graph, search_region, kNN, retri_amount, feature_type)
-}
+
 
 {% endhighlight %}
 
@@ -194,7 +194,7 @@ if __name__ == '__main__':
 *  之后利用构建的Graph进行融合。
 
 {% highlight python %}
-{
+
 
 import numpy
 import cPickle
@@ -394,13 +394,13 @@ if __name__ == "__main__":
         
         graph_list = [] 
         count = 1
-}  
+
 {% endhighlight %}
 
 *  到这一步，已经获得了经过融合后的检索结果id，只需要再将id转换成图片名字就可以进行平均检索准确率的计算。
 
 {% highlight python %}
-{
+
 	#coding:utf8
 
 import os
@@ -440,7 +440,7 @@ if __name__ == '__main__':
 	Img_id = set_id()
 	get_name(Img_id)
             
-}
+
 
 {% endhighlight %}
 
