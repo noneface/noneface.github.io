@@ -17,7 +17,7 @@ tag: codes
 *  首先，构建Graph是根据图片对应的下标。只需要将检索出来的结果，进行转换，转换成id就行。
 {% highlight python %}
 
-	#coding:utf8
+#coding:utf8
 
 import os
 
@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
 {% highlight python %}
 
-	import numpy
+import numpy
 import cPickle
 import re
 import os
@@ -401,7 +401,7 @@ if __name__ == "__main__":
 
 {% highlight python %}
 
-	#coding:utf8
+#coding:utf8
 
 import os
 
