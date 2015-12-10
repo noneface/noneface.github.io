@@ -6,18 +6,18 @@ tag: codes
 
 <h3>特征提取</h3>
 
-*  对于图像的特征提取，matlab能提供的库远比python的库全面而且有效。
-*  在此次检索中，用到了两大不同类型的特征：全局特征，局部特征。全局特征，提取的是GIST特征。局部特征，提取的是SIFT特征进行构造BOW。
+对于图像的特征提取，matlab能提供的库远比python的库全面而且有效。
+在此次检索中，用到了两大不同类型的特征：全局特征，局部特征。全局特征，提取的是GIST特征。局部特征，提取的是SIFT特征进行构造BOW。
 
-*  <h3>GIST特征</h3>
+<h3>GIST特征</h3>
 
-*  GIST特征的简介:http://www.cnblogs.com/justany/archive/2012/12/06/2804211.html
-*  GIST特征的matlab实现:http://people.csail.mit.edu/torralba/code/spatialenvelope/
+GIST特征的简介:http://www.cnblogs.com/justany/archive/2012/12/06/2804211.html
+GIST特征的matlab实现:http://people.csail.mit.edu/torralba/code/spatialenvelope/
 
-*  在LMgist中，文档写的已经十分清楚了，利用LMgist函数，计算出每张图片的特征向量。经过测试，产生的特征是512维的向量。
-*  由于对matlab不是十分熟悉，一边看着作者提供的文档，一边百度一些matlab的语法问题。写了一个matlab的函数，能够提取传入图片的特征，并保持成文件。检索的工作，就全部放在python中完成。
+在LMgist中，文档写的已经十分清楚了，利用LMgist函数，计算出每张图片的特征向量。经过测试，产生的特征是512维的向量。
+由于对matlab不是十分熟悉，一边看着作者提供的文档，一边百度一些matlab的语法问题。写了一个matlab的函数，能够提取传入图片的特征，并保持成文件。检索的工作，就全部放在python中完成。
 
-*	matlab提取GIST特征代码如下:
+matlab提取GIST特征代码如下:
 
 {% highlight matlab %}
 function  get_gist(imgname)
@@ -45,11 +45,11 @@ fclose(fid);
 end
 {% endhighlight %}
 
-*  接下来的工作就是将图像库中的图片特征提取出来。又是一个批量化操作的工作，就交给ptyhon来实现。
-*  因为matlab支持在cmd中以命令行的形式调用matlab commond line来运行matlab程序。那么就可以用一行命令来实现matlab的GIST特征提取。
-*  如:matlab -nojvm -nosplash -r "gist_m(''//参数图片名字)；exit"  -nojvm  不运行matlab的图形界面 -nosplash 不显示matlab打开时的图像 -r ""  传入在matlab commond line 里面运行的代码， get_gsit()所写好的提取GIST特征代码，exit运行结束后关闭matlab commond line。
+接下来的工作就是将图像库中的图片特征提取出来。又是一个批量化操作的工作，就交给ptyhon来实现。
+因为matlab支持在cmd中以命令行的形式调用matlab commond line来运行matlab程序。那么就可以用一行命令来实现matlab的GIST特征提取。
+如:matlab -nojvm -nosplash -r "gist_m(''//参数图片名字)；exit"  -nojvm  不运行matlab的图形界面 -nosplash 不显示matlab打开时的图像 -r ""  传入在matlab commond line 里面运行的代码， get_gsit()所写好的提取GIST特征代码，exit运行结束后关闭matlab commond line。
 
-*  这种自动化的工作，交给python吧。
+这种自动化的工作，交给python吧。
 
 {% highlight python %}
 #coding:utf8
@@ -86,19 +86,19 @@ if __name__ == '__main__':
 	main()
 {% endhighlight %}
 
-*  <h3>SIFT特征</h3>
+<h3>SIFT特征</h3>
 
-*  SIFT特征的简介:http://blog.csdn.net/abcjennifer/article/details/7639681
-*  SIFT特征的matlab实现:http://www.vlfeat.org/
-*  在vlfeat中，有matlab的接口，能够提供SIFT特征的提取。
-*  SIFT特征提取的工作就和GIST特征的过程一样了。构造matlab的SIFT特征提取函数，再用python调用cmd中的命令行，调用matlab commond line。
-*  获取到SIFT特征后，接下来就是构造词袋，统计词频做BOvW特征。
+SIFT特征的简介:http://blog.csdn.net/abcjennifer/article/details/7639681
+SIFT特征的matlab实现:http://www.vlfeat.org/
+在vlfeat中，有matlab的接口，能够提供SIFT特征的提取。
+SIFT特征提取的工作就和GIST特征的过程一样了。构造matlab的SIFT特征提取函数，再用python调用cmd中的命令行，调用matlab commond line。
+获取到SIFT特征后，接下来就是构造词袋，统计词频做BOvW特征。
 
-*  <h3>BOvW特征</h3>
-*  由于用SIFT特征提取出来的特征是一个128*keypoints的矩阵。每张图片的keypoints数不固定，对图片相似度计算也有难度。于是引入了BOvW特征，利用kmeans聚类构造词典，统计每张图像的特征词频，对产生的词频进行相似度计算。
-*  python也有提供一个强大的机器学习库，scikit-learn:http://scikit-learn.org/stable/，其中提供了kmeans聚类方法。
+<h3>BOvW特征</h3>
+由于用SIFT特征提取出来的特征是一个128*keypoints的矩阵。每张图片的keypoints数不固定，对图片相似度计算也有难度。于是引入了BOvW特征，利用kmeans聚类构造词典，统计每张图像的特征词频，对产生的词频进行相似度计算。
+python也有提供一个强大的机器学习库，scikit-learn:http://scikit-learn.org/stable/，其中提供了kmeans聚类方法。
 
-*   实现kmeans聚类代码如下:
+实现kmeans聚类代码如下:
 
 {% highlight python %}
 #coding:utf8
@@ -207,6 +207,6 @@ if __name__ == '__main__':
 	im_features = cal_idf_l2(im_features)
 {% endhighlight %}
 
-*  综上，图像的特征提取已经完成。
-*  EOF
+综上，图像的特征提取已经完成。
+EOF
 

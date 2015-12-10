@@ -4,11 +4,11 @@ title: EE/python读取单片机串口实时数据并绘制图像
 tag: codes
 ---
 
-*  作为一个CS专业的学生，突然帮一位EE专业的同学搞起了单片机串口数据的读取绘图，只是因为python太强大了。
+作为一个CS专业的学生，突然帮一位EE专业的同学搞起了单片机串口数据的读取绘图，只是因为python太强大了。
 
 
-*  首先，我们得获取到单片机的串口，然后才能获取的从单片机发送的数据。
-*  python有一个叫做pyserial的库。直接通过串口和单片机进行交互。
+首先，我们得获取到单片机的串口，然后才能获取的从单片机发送的数据。
+python有一个叫做pyserial的库。直接通过串口和单片机进行交互。
 
 <h3>安装pyserial</h3>  
 <code>pip install pyserial</code>
@@ -21,12 +21,12 @@ ser.read(data_byte)  #从串口读取数据的大小
 ser.flushInput()  #清除缓存区的数据
 {% endhighlight %}
 
-*  有这几个方法，我们就已经能够正常的获取到串口发来的数据。
+有这几个方法，我们就已经能够正常的获取到串口发来的数据。
 
 <h3>安装matplotlib</h3>
-*  其次，将获取到的数据,绘制成实时的数据。
-*  又是一个python的库。 matplotlib，绘图功能强大的库。
-*  matplotlib库的安装有点麻烦,需要安装部分辅助的库,过程如下。
+其次，将获取到的数据,绘制成实时的数据。
+又是一个python的库。 matplotlib，绘图功能强大的库。
+matplotlib库的安装有点麻烦,需要安装部分辅助的库,过程如下。
 
 <code>pip install numpy</code><br/>
 <code>pip install pyparsing</code><br/>
@@ -42,11 +42,11 @@ plt.plot([0,3,1,3])  #plt为一个类，plot为绘制成折线图，其中如果
 plt.show()
 {% endhighlight %}
 
-*  效果是这样的。
+效果是这样的。
 
-*  <img src="/images/figure1.png">
+<img src="/images/figure1.png">
 
-*  如果我们需要做成动态更新的话，需要使用到plt.pause(time),time为绘图时所需要的一个时间，来给figure有时间显示和绘图。
+如果我们需要做成动态更新的话，需要使用到plt.pause(time),time为绘图时所需要的一个时间，来给figure有时间显示和绘图。
 {% highlight python %}
 #!/usr/bin/env python
 import numpy as np
@@ -61,10 +61,10 @@ while True:
 	plt.plot(y) #将list传入plot画图
 	plt.pause(0.01) # 这个为停顿0.01s，能得到产生实时的效果
 {% endhighlight %}
-*  <img src="/images/figure2.png" ><img src="/images/figure3.png" >
+<img src="/images/figure2.png" ><img src="/images/figure3.png" >
 
-*  接下来只需要把从串口上读取到的数据，传到绘图功能里面。然后进行实时绘图
-*  这里接收到的数据是一个加速度传感器发来的加速度。
+接下来只需要把从串口上读取到的数据，传到绘图功能里面。然后进行实时绘图
+这里接收到的数据是一个加速度传感器发来的加速度。
 {% highlight python %}
 #!/usr/bin/env python
 import numpy as np
@@ -88,7 +88,7 @@ while True:
 	plt.pause(0.01) # 这个为停顿0.01s，能得到产生实时的效果
 {% endhighlight %}
 
-*  这里有一个产生随机数，实时绘图的例子
+这里有一个产生随机数，实时绘图的例子
 {% highlight python %}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -107,5 +107,5 @@ while True:
     plt.pause(0.1)
 {% endhighlight %}
 
-*  折腾了一天，终于搞定了。
-*  技能树是越点越歪了。
+折腾了一天，终于搞定了。
+技能树是越点越歪了。
