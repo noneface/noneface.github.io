@@ -227,5 +227,3 @@ if __name__ == '__main__':
 <img src="/images/adaptive-fusion.png" >
 
 融合结果和graph fusion的结果类似。
-
-完整代码:https://github.com/noneface/image-Retrieval
