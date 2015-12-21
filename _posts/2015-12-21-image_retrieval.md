@@ -1,16 +1,21 @@
 ---
 layout: post
-title: matlab/python | 图像多特征融合检索/特征检索结果融合——Adaptive Fusion(1)
+title: matlab/python | 图像多特征融合检索/特征检索结果融合——Adaptive Fusion(4)
 tag: codes
 ---
 
 <h3>Adaptive Fusion</h3>
 
 简介：http://www.liangzheng.com.cn/CVPR15_query.pdf
+
 该论文作者提出了一种query-adaptive fusion方法。
+
 我对这种方法的理解为：将不同特征检索后的结果曲线，通过一些无关图像对其进行normalize，然后计算每一种特征曲线normalize后的曲线下面积，分配权重，根据权重来组成新的检索结果分数曲线。
+
 论文作者在其论文中描述的比上面我所描述的更为清晰。
+
 该作者提供了实现这一方法的matlab代码，对于matlab并不是很熟悉，于是我就把作者的代码重写成了python的代码。可能会存在一些误差。
+
 作者代码：http://www.liangzheng.com.cn/Project/project_fusion.html
 
 {% highlight python %}
@@ -212,10 +217,15 @@ if __name__ == '__main__':
 {% endhighlight %}
 
 由于matlab中，任何数据貌似都是一个矩阵，所以在python中，需要用numpy进行某些转换。
+
 在对LULC这个图像库进行检索的时候，用的reference score是论文作者提供的。
+
 得出融合后的分数后，再进行排序。选出top 10。
+
 最后结果为:
+
 <img src="/images/adaptive-fusion.png" >
 
 融合结果和graph fusion的结果类似。
+
 完整代码:https://github.com/noneface/image-Retrieval
