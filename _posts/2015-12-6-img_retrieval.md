@@ -1,6 +1,6 @@
 ---
 layout: post
-title: matlab/python | 图像多特征融合检索/特征检索结果融合(3)
+title: matlab/python | 图像多特征融合检索/特征检索结果融合——Graph Fusion(3)
 tag: codes
 ---
 
