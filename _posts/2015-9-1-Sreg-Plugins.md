@@ -1,6 +1,6 @@
 ---
 layout: post
-tag: coded
+tag: codes
 title: Sreg 编辑Plugins文件
 ---
 
