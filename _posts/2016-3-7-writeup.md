@@ -4,21 +4,27 @@ title: 网络安全实验室--脚本关writeup
 tag: codes
 ---
 
-##开始
->最近开始搞网络安全方面的实践，找到了[网络安全实验室](http://hackinglab.cn)这个网站。做了小部分的题目，顺便记录下做题过程的writeup。
+<h2>开始</h2>
 
-####脚本关
+最近开始搞网络安全方面的实践，找到了[网络安全实验室](http://hackinglab.cn)这个网站。做了小部分的题目，顺便记录下做题过程的writeup。
 
-###### [第一关](http://lab1.xseclab.com/xss1_30ac8668cd453e7e387c76b132b140bb/index.php)
-点击链接后，页面会直接跳转到no_key_is_here_forever.php这个页面，然而根据页面源代码，应该是首先跳转到search_key.php，
+<h5>脚本关</h5>脚本关
+
+<h6>[第一关]</h6>
+
+点击链接后，页面会直接跳转到no_key_is_here_forever.php这个页面，然而根据页面源代码，应该是首先跳转到search_key.php。
+
 <img src="/images/writeup1.png" />
+
 所以，在search_key.php这个页面存在猫腻，接下来就是利用brup suite进行对数据的截取。
 在http history中，找到三次get数据，其中关于search_key.php的响应如下：
+
 <img src="/images/writeup1_1.png" />
+
 Get Key! 从响应中也能发现，返回了一段script代码，页面自动跳转到no_key_is_here_forever.php，所以看不到返回的key。
 
-###### [第二关](http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php)
-这一关比较直接，就是让你在2s内计算出结果，并提交。
+<h6>[第二关]</h6>
+
 经过观察，给出式子的格式是固定的，那么就只要获取数字，代入公式一样得出结果。
 所以用python写脚本：
 
@@ -49,20 +55,29 @@ res = requests.post(url,cookies=cookie,data=post)
 print res.content
 {% endhighlight %}
 结果：
+
 <img src="/images/writeup2_1.png" />
+
 Get key!
 
-######[第三关](http://hackinglab.cn/ShowQues.php?type=scripts)
+<h6>[第三关]</h6>
+
 第三关没有链接，提示是这个题目是空的，空的，空：null(还提示是小写)。
 
-######[第四关](http://lab1.xseclab.com/xss3_5dcdde90bbe55087eb3514405972b1a6/index.php)
+<h6>[第四关]</h6>
+
 点击网页上的链接，并没有出现弹窗。观察了一下页面源码。
+
 <img src="/images/writeup4_1.png" />
+
 前两个js函数导致弹窗的失败，试过把后面所要的代码放进到chrome中的console中运行，报错。然后就只能直接保存页面，删除文件里面的两个函数，直接打开。
+
 <img src="/images/writeup4_2.png" />
+
 Get key!
 
-######[第五关](http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php)
+<h6>[第五关]</h6>
+
 暴力破解4位纯数字的密码，但是有验证码。虽然python能自动识别验证码，但是应该也能有什么绕过的方法。
 依旧是开启brup suite，对提交的数据进行获取，然后放进brup suite里面重复提交，偶然发现只要页面没有进行刷新，产生的验证码就一直有效。
 既然是脚本关，那就得用脚本来解决问题。
@@ -90,10 +105,13 @@ while True:
 		break
 
 {% endhighlight %}
+
 <img src="/images/writeup5_1.png" />
+
 Get key!
 
-######[第六关](http://lab1.xseclab.com/vcode2_a6e6bac0b47c8187b09deb20babc0e85/index.php)
+<h6>[第六关]</h6>
+
 依旧是验证码的问题。试试留空能不能绕过。
 
 {% highlight python%}
@@ -119,26 +137,38 @@ while True:
 		break
 
 {% endhighlight %}
+
 <img src="/images/writeup6_1.png" />
+
 Get key!
 
-######[第七关](http://lab1.xseclab.com/vcode3_9d1ea7ad52ad93c04a837e0808b17097/index.php)
+<h6>[第七关]</h6>
+
 同上，留空绕过验证码。
+
 <img src="/images/writeup7_1.png" />
 
-######[第八关](http://lab1.xseclab.com/base13_ead1b12e47ec7cc5390303831b779d47/index.php)
+<h6>[第八关]</h6>
+
 暂时没有解出来。
 
-######[第九关](http://lab1.xseclab.com/vcode5_mobi_5773f3def9f77f439e058894cefc42a8/)
+<h6>[第九关]</h6>
+
 手机验证码登录，获取验证码后，提示please login as 13388886667，那就用这个号登录呗，又被告知
+
 <img src="/images/writeup9_1.png" />
+
 只能再用brup suite进行截取数据了。
+
 <img src="/images/writeup9_2.png" />
+
 有用只有6666这个号码能获取到验证码，那么就修改下数据包里面的参数，将号码改成6666获取一波验证码，试试看有没有用。
+
 <img src="/images/writeup9_3.png" />
+
 Get Key!
 
-######[第十关](http://lab1.xseclab.com/vcode6_mobi_b46772933eb4c8b5175c67dbc44d8901/)
+<h6>[第十关]</h6>
 依旧是验证码，三位数的，python暴力的跑吧。
 
 {% highlight python %}
@@ -168,7 +198,11 @@ while True:
 
 {% endhighlight %}
 将所有的响应结果保存下来，发现这个。
+
 <img src="/images/writeup10_1.png" />
+
 再登录提示的账号，只要修改脚本里面的username就可以了。
+
 <img src="/images/writeup10_2.png" />
+
 Get Key!
