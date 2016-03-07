@@ -87,7 +87,7 @@ Get key!
 
 import requests
 
-url = 'http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php'
+url = 'http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/login.php'
 
 username = 'admin'
 submit = 'submit'
@@ -119,7 +119,7 @@ Get key!
 
 import requests
 
-url = 'http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/index.php'
+url = 'http://lab1.xseclab.com/vcode1_bcfef7eacf7badc64aaf18844cdb1c46/login.php'
 
 username = 'admin'
 submit = 'submit'
