@@ -127,5 +127,46 @@ if __name__ == '__main__':
 	print u"词典数为：500，平均检索准确率为：",score500
 {% endhighlight %}
 
+<code>update 2016/3/8</code>
+
+{% highlight python%}
+#coding:utf8
+import os
+import re
+
+def evaluate(path,n=10.0):
+	ls = os.listdir(path)
+
+	score = []
+
+	for l in ls:
+		cur_name = l
+		fname = path+'\\'+cur_name
+		fobj = open(fname)
+		cur_name = re.sub(r'\d\d.txt',"",cur_name)
+		count = 1
+		right_count = 0
+		s = 0
+		for line in fobj:
+			line = line.rstrip()
+			result_name = re.sub(r'\d\d.tif',"",line)
+			if(cur_name == result_name):
+				right_count += 1
+				s += (right_count/(count*1.0))
+			count += 1
+		score.append(s*1.0/right_count)
+	
+	all_score = 0
+	for s in score:
+		all_score += s
+
+	return all_score/2100.0
+if __name__ == '__main__':
+
+	score500 = evaluate("D:\\img\\image-Retrieval\\Graph_fusion\\result_name\\bow",)
+	print u"bow，mAP：",score500
+{% endhighlight %}
+
 到这里，图像的检索以及平均检索准确率的计算已经完成。
+
 EOF
