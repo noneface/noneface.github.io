@@ -4,23 +4,23 @@ title: matlab/python | 图像多特征融合检索/CNN特征(5)
 tag: codes
 ---
 
-<h3>[MatConvNet](http://www.vlfeat.org/matconvnet/)</h3>
+<h3>MatconvNet</h3>
 
-MatConvNet是一款基于matlab开源的卷积神经网络工具包，并且提供了多种pre—trained models。更多详细资料，自己google。
+[MatConvNet](http://www.vlfeat.org/matconvnet/)是一款基于matlab开源的卷积神经网络工具包，并且提供了多种pre—trained models。更多详细资料，自己google。
 
-<h4>关于MatConvNet的配置</h4>
+<h3>关于MatConvNet的配置</h3>
 
 [请参考](http://yongyuan.name/blog/image-retrieval-using-MatconvNet-and-pre-trained-imageNet.html)
 
 [或者官网](http://www.vlfeat.org/matconvnet/quick/)
 
-<h4>pre-traine models选取</h4>
+<h3>pre-traine models选取</h3>
 
 1.imagenet-googlenet-dag.mat
 2.imagenet-vgg-m.mat
 3.imagenet-vgg-verydeep-16.mat
 
-<h4>特征提取</h4>
+<h3>特征提取</h3>
 
 因为需要利用到之前完成的两种特征融合，所以将所有图片的特征保存到同一文件中，方便使用。
 
@@ -168,7 +168,7 @@ end
 
 {% endhighlight %}
 
-<h4>检索</h4>
+<h3>检索</h3>
 
 {% highlight python %}
 #coding:utf8
@@ -242,13 +242,13 @@ if __name__ == '__main__':
 
 <img src="/images/cnn1.png" alt="">
 
-<h4>融合</h4>
+<h3>融合</h3>
 
 基于之前的融合代码，进行Graph和adaptive融合。
 
 <img src="/images/cnn2.png" alt="">
 
-<h4>微调</h4>
+<h3>微调</h3>
 
 <h5>1.对自己的数据构建imdb.mat</h5>
 
@@ -385,7 +385,7 @@ end
 
 相对来说，微调结果的提升幅度并没有adaptive fusion产生的结果好。
 
-<h4>总结</h4>
+<h3>总结</h3>
 
 <h5>关于两种融合</h5>
 
