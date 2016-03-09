@@ -189,7 +189,7 @@ Get key!
 
 首先，在这关页面输入框里面输入提交内容是无效的，根据提供的php代码，必须得GET方法提交数据，这是第一步。
 
-第二步，提交的参数名要是 ^_^ ，在<code>if (preg_match ('/_/', $_SERVER['QUERY_STRING'])) $smile = 0; </code>这里面，又对下划线进行了过滤，那么只有绕过了，利用urlcode " '_' == %5f "。
+第二步，提交的参数名要是"^_^"，在<code>if (preg_match ('/_/', $_SERVER['QUERY_STRING'])) $smile = 0; </code>这里面，又对下划线进行了过滤，那么只有绕过了，利用urlcode " _ == %5f "。
 
 第三步，就是提交(●'◡'●)，因为需要绕过<code>if (!isset ($_GET['^_^'])) $smile = 0;  </code>，所以，得用php里面已经set过的参数。并且还能传递(●'◡'●)作为真正的变量。[可以参考](http://php.net/manual/zh/wrappers.php)，这里面php支持的协议。里面大部分的协议已经被过滤了，那么只有利用data://text/plain。
 
