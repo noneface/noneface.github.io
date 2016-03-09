@@ -152,6 +152,53 @@ Get key!
 
 暂时没有解出来。
 
+<code>update 2016/3/9</code>
+好吧，这关需要绕过php的过滤。
+
+{% highlight php %}
+<?php  
+    header("Content-type: text/html; charset=utf-8");
+    if (isset($_GET['view-source'])) { 
+        show_source(__FILE__); 
+        exit(); 
+    } 
+
+    include('flag.php'); 
+
+    $smile = 1;  
+
+   if (!isset ($_GET['^_^'])) $smile = 0;  
+    if (preg_match ('/\./', $_GET['^_^'])) $smile = 0;  
+    if (preg_match ('/%/', $_GET['^_^'])) $smile = 0;  
+    if (preg_match ('/[0-9]/', $_GET['^_^'])) $smile = 0;  
+    if (preg_match ('/http/', $_GET['^_^']) ) $smile = 0;  
+    if (preg_match ('/https/', $_GET['^_^']) ) $smile = 0;  
+    if (preg_match ('/ftp/', $_GET['^_^'])) $smile = 0;  
+    if (preg_match ('/telnet/', $_GET['^_^'])) $smile = 0;  
+    if (preg_match ('/_/', $_SERVER['QUERY_STRING'])) $smile = 0; 
+    if ($smile) { 
+        if (@file_exists ($_GET['^_^'])) $smile = 0;  
+    }  
+    if ($smile) { 
+        $smile = @file_get_contents ($_GET['^_^']);  
+        if ($smile === "(●'◡'●)") die($flag);  
+    }  
+?>  
+
+{% endhighlgiht%}
+
+首先，在这关页面输入框里面输入提交内容是无效的，根据提供的php代码，必须得GET方法提交数据，这是第一步。
+
+第二步，提交的参数名要是'^_^'，在<code>if (preg_match ('/_/', $_SERVER['QUERY_STRING'])) $smile = 0; </code>这里面，又对下划线'_'进行了过滤，那么只有绕过了，利用urlcode " '_' == %5f "。
+
+第三步，就是提交(●'◡'●)，因为需要绕过<code>if (!isset ($_GET['^_^'])) $smile = 0;  </code>，所以，得用php里面已经set过的参数。并且还能传递(●'◡'●)作为真正的变量。[可以参考](http://php.net/manual/zh/wrappers.php)，这里面php支持的协议。里面大部分的协议已经被过滤了，那么只有利用data://text/plain。
+
+构造完成后的链接就是：?^%5f^=data://text/plain,(●'◡'●)
+
+<img src="/images/writeup_8.png" alt="">
+
+Get Key! 又得要入php这个大坑了。。
+
 <h6>[第九关]</h6>
 
 手机验证码登录，获取验证码后，提示please login as 13388886667，那就用这个号登录呗，又被告知
@@ -208,7 +255,7 @@ while True:
 Get Key!
 
 <h6>[第十一关]</h6>
-
+<code>update 2016/3/8</code>
 这里就需要利用pytesseract来对验证码进行识别，从而暴力破解。
 
 {% highlight python %}
@@ -267,7 +314,7 @@ if __name__ == '__main__':
 Get Key!
 
 <h6>[第十二关]</h6>
-
+<code>update 2016/3/8</code>
 简单的xss，没有任何过滤。
 
 <img src="/images/writeup_12.png" alt="">
@@ -275,7 +322,7 @@ Get Key!
 Get Key!
 
 <h6>[第十二关]</h6>
-
+<code>update 2016/3/8</code>
 这一关对 **script**  进行了过滤，那么可用其他：'<img src="#" onerror=alert(HackingLab)>'
 
 <img src="/images/writeup_13.png" alt="">
