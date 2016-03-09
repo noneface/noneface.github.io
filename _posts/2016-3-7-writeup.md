@@ -185,7 +185,7 @@ Get key!
     }  
 ?>  
 
-{% endhighlgiht%}
+{% endhighlight %}
 
 首先，在这关页面输入框里面输入提交内容是无效的，根据提供的php代码，必须得GET方法提交数据，这是第一步。
 
