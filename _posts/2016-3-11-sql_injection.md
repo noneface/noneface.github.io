@@ -52,7 +52,8 @@ clone框架到了woobuntu上，并且配置好环境(apache2+php+mysql)。
 比如：?id=1'%23 union select 1,2,3
 先找出表字段有几个。之后再用：?id=1' union select 1,2,table_name from information_schema.tables%23，以及：?id=1' union select 1,2,column_name from information_schema.columns%23，理论上这样表名和列名都能获取了。不过在这个例子中，php代码里面有做限制，只能读取mysql语句执行后返回结果的第一条记录，我们可以这样做修改：
 
-<code>
+{% highlight php %}
+
 while($row = mysql_fetch_array($result)){
 
 	echo "<font size='5' color= '#99FF00'>";
@@ -69,7 +70,8 @@ while($row = mysql_fetch_array($result)){
 	print_r(mysql_error());
 	echo "</font>"; 
 	}
-</code>
+
+{% endhighlight %}
 
 由于$row = mysql_fetch_array($result)只取出返回结果的一条记录，所以用循环来控制将所有的结果返回。
 
