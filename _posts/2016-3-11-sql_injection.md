@@ -77,6 +77,6 @@ while($row = mysql_fetch_array($result)){
 
 根据表名和列名构造最后的语句:?id=1' union select 1,username,password from users%23
 
-<img src="/images/sql_1.png">
+<img src="/images/sql_3.png">
 
 EOF
