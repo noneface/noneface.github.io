@@ -90,10 +90,9 @@ Cookie 其实应该也是算头部注入的一种形式。因为在 HTTP 请求�
 
 如：当判断当前的列数之后，假设为3
 
-<code>
-union select 1,2,table_name from information_schema.tables
-union select 1,2,column_name from information_schema.columns
-</code>
+<code>union select 1,2,table_name from information_schema.tables</code>
+
+<code>union select 1,2,column_name from information_schema.columns</code>
 
 table_name和column_name存在的位置和最后在页面返回的结果相关。若最后结果只显示返回列中的后两列，
 那么相应的，table_name和column_name也必须在最后两列。
