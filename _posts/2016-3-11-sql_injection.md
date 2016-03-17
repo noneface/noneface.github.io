@@ -77,6 +77,14 @@ Cookie 其实应该也是算头部注入的一种形式。因为在 HTTP 请求�
 
 <h2>注入语句</h2>
 
+<h3>常用mysql函数</h3>
+
+<code>version()</code>
+
+<code>current_user()</code>
+
+<code>select * from information_schema.tables/columns</code>
+
 <h3>Part 1</h3>
 
 <code>1.union select 1,2,3...</code>
@@ -97,13 +105,10 @@ Cookie 其实应该也是算头部注入的一种形式。因为在 HTTP 请求�
 table_name和column_name存在的位置和最后在页面返回的结果相关。若最后结果只显示返回列中的后两列，
 那么相应的，table_name和column_name也必须在最后两列。
 
-<h3>Part 2</h3>
 
-<code>...待续</code>
+<h4>Example</h4>
 
-<h2>开始</h2>
-
-<h4>GET - Error based - Single quotes - String</h4>
+<h5>GET - Error based - Single quotes - String</h5>
 
 进入网页，提示input the id as parameter。
 
@@ -182,5 +187,26 @@ while($row = mysql_fetch_array($result)){
 
 Less_1 ～ Less_4都是相同的情况，只需要通过fuzz猜出最后执行的sql语句，然后构造执行自己提交的数据
 就成功了。
+
+<h3>Part 2</h3>
+
+<h4>Double query injection</h4>
+
+翻译过来就是二次查询注入，这种注入也是error based类型。利用mysql或者其他类型数据库的报错，在报错中显示
+我们需要的数据。
+
+在这种类型的注入中主要利用到几个sql语句：
+
+<code>select concat() 拼接字符串的函数 </code>
+
+<code>select conut(*) 计数的函数</code>
+
+<code>rand() 产生随机浮点数数0~1</code>
+
+<code>floor() 取整</code>
+
+<code>group by 按照某个变量分组</code>
+
+
 
 EOF
