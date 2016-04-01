@@ -167,6 +167,8 @@ if __name__ == '__main__':
 	print u"bow，mAP：",score500
 {% endhighlight %}
 
+mAP计算方法参考来自:http://yongyuan.name/blog/evaluation-of-information-retrieval.html
+
 到这里，图像的检索以及平均检索准确率的计算已经完成。
 
 EOF

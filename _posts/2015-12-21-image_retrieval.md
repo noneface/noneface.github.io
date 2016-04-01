@@ -218,7 +218,7 @@ if __name__ == '__main__':
 
 由于matlab中，任何数据貌似都是一个矩阵，所以在python中，需要用numpy进行某些转换。
 
-在对LULC这个图像库进行检索的时候，用的reference score是论文作者提供的。
+在对图像库进行检索的时候，用的reference score是论文作者提供的。
 
 得出融合后的分数后，再进行排序。选出top 10。
 
