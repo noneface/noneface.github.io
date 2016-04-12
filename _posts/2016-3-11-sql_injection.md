@@ -218,6 +218,14 @@ information_schema.tables group by a)x)%23</code>
 
 [解释二](http://stackoverflow.com/questions/11787558/sql-injection-attack-what-does-this-do)
 
+<code>update 2016/4/12 </code>
+
+[解释三](http://drops.wooyun.org/tips/14312)
+
+还是大神解释的对。在临时表中插入时产生了重复，二次计算两次的值不一样。所以产生了报错。
+
+多逛wooyun的drops。
+
 <h4>Example</h4>
 
 <h5>Double Injection - Single Quotes </h5>
