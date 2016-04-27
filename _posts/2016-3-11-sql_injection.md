@@ -303,6 +303,11 @@ floor(rand(0)*2))a from information_schema.tables group by a)x)%23
 当在sql语句的最后加上了一个bool值进行判断时，若为假，则最后的结果就是空的。
 最后结果为空，页面上就什么也不会回显。那么与正常情况下存在区别，就可以利用盲注来进行猜内容。
 
+分析一下php源代码:
+
+<img src="/images/sql_16.png">
+
+在代码中，很明显是根据查询结果row是否为空来选择是echo You are in还是输出error。结合上面的，如果and后面的内容为false，那么最后的查询结果就是一个empty set，那么row的内容就为空，也就进了else准备输出error，可是error里面并没有任何错误可以输出，所以最后仔细观察在页面上只输出了一个br。
 
 <code>update 2016/4/26 </code>
 
