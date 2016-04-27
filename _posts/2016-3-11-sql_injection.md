@@ -127,6 +127,7 @@ table_name和column_name存在的位置和最后在页面返回的结果相关�
 <img src="/images/sql_2.png">
 
 报错。
+
 <code> ''1'' LIMIT 0,1'	</code>
 根据报错来看，是多加了一个引号导致语句提前闭合。第一个和最后一个引号为报错时自动提供的，第二个和
 第四个引号为php处理加上的，第三个引号为提交上去的。
@@ -202,7 +203,7 @@ Less_1 ～ Less_4都是相同的情况，只需要通过fuzz猜出最后执行�
 所以接下来就可以用union select 或者其他语句注入出其他信息，并且能在页面上显示。
 
 构造语句:id=' union select 1,table_name,database() from information_schema.tables 
-where table_schema=database() limit 0,1
+where table_schema=database() limit 0,1--+
 
 这样就把数据库的名字，以及第一张表的名字给回显出来了。
 
