@@ -291,6 +291,19 @@ floor(rand(0)*2))a from information_schema.tables group by a)x)%23
 
 <img src="/images/sql_8.png">
 
+<code> update 2016/4/27 </code>
+这种类型的注入是因为在报错中可以返回字段内容。也可以利用盲注来进行。
+
+不过盲注的速度就没有这样快。
+
+为什么在这个例子中可以用盲注:
+
+<img src="/images/sql_15.png">
+
+当在sql语句的最后加上了一个bool值进行判断时，若为假，则最后的结果就是空的。
+最后结果为空，页面上就什么也不会回显。那么与正常情况下存在区别，就可以利用盲注来进行猜内容。
+
+
 <code>update 2016/4/26 </code>
 
 <h3>Part 3</h3>
