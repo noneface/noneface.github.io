@@ -188,6 +188,26 @@ while($row = mysql_fetch_array($result)){
 Less_1 ～ Less_4都是相同的情况，只需要通过fuzz猜出最后执行的sql语句，然后构造执行自己提交的数据
 就成功了。
 
+<code>update 2016/4/27 </code>
+
+上面的利用还是有问题,不能说最后只返回了第一条记录，就不能获取其他信息。
+
+下面说说最近学到的一些方法。
+
+还是和上面一样，先确定最后执行的语句。
+
+先构造完整的语句: ?id=' --+
+这样产生的sql语句返回的内容是空的，所以也没上不会有任何显示。
+
+所以接下来就可以用union select 或者其他语句注入出其他信息，并且能在页面上显示。
+
+构造语句:id=' union select 1,table_name,database() from information_schema.tables 
+where table_schema=database() limit 0,1
+
+这样就把数据库的名字，以及第一张表的名字给回显出来了。
+
+<img src="/images/sql_14.png">
+
 <h3>Part 2</h3>
 
 <h4>Double query injection</h4>
