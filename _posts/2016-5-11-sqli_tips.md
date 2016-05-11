@@ -36,7 +36,7 @@ username设为：admin'#,密码随便设置，但是记住。
 
 在注册的时候会创建用户，成了：
 
-insert into users ( username, password) values("admin\'#", "123")
+insert into users ( username, password) values("admin\\'#", "123")
 
 但是在写入mysql的时候，单个\是不会被mysql写入的，\表示转义字符。
 
@@ -56,7 +56,7 @@ UPDATE users SET PASSWORD='123123' where username='admin'#' and password='123'
 
 但是你在登录的时候,同理的你的输入也会被转义特殊字符。就成了这样：
 
-SELECT * FROM users WHERE username='\' or 1=1 #' and password='123'
+SELECT * FROM users WHERE username='\\' or 1=1 #' and password='123'
 
 在username=‘\’，这个是不能被mysql成功执行的。
 
