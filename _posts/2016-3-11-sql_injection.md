@@ -783,20 +783,19 @@ update users set Password='' # where username='admin'
 
 UPDATE users SET password = '' or (select length(database()))=8 #' WHERE username='admin'
 
-也就是提交 admin ，’ or (select length(database()))=8 #,这样的话，mysql的逻辑会去判断password后面的两个内容相当于是(expr1) and (expr2),其中的expr1为‘’，expr2为(select length(database()))=8，这种情况下，expr1为false，expr2为true，and之后为false。
+也就是提交 admin ，’ or (select length(database()))=8 #,这样的话，mysql的逻辑会去判断password后面的两个内容相当于是(expr1) and (expr2),其中的expr1为‘’，expr2为(select length(database()))=8，这种情况下，expr1为false，expr2为true，or之后为true。
 
-这样mysql就会被理解成password=0。后面加上#当作注释，也就是把users整张表的password字段内容设为了0。
+这里的连接词还不能用and，可能是这个mysql版本有关，当前的环境是5.2.68环境。我猜测可能是在判断bool的时候，如果前面的值为false并且用and链接的话，mysql就不会继续去解析后面的语句。
 
+这样mysql就会被理解成password=1。后面加上#当作注释，也就是把users整张表的password字段内容设为了1。
+
+在最后的显示页面成功与否并会产生任何差异，所以这种注入没有任何用。
 
 所以就只能利用double query injection，让mysql通过报错来回显数据。
 
 构造的注入如下：
 
 UPDATE users SET password = '' or (select 1 from (select count(*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
-
-这里的连接词还不能用and，可能是这个mysql版本有关，当前的环境是5.2.68环境。
-
-我猜测可能是在判断bool的时候，如果前面的值为false并且用and链接的话，mysql就不会继续去解析后面的语句。
 
 所以如果写成这样：
 
