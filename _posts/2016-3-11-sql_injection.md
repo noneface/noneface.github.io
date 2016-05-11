@@ -843,6 +843,4 @@ Less-20
 
 <img src="/images/sql_25.png" alt="">
 
-<code>...待续</code>
-
 EOF
