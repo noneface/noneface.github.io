@@ -637,7 +637,7 @@ for c in range(0,count):
 
 <img src="/images/sql_13.png" alt="">
 
-
+<code>update 2016/5/11</code>
 <h4>SQLi in GET/POST/COOKIES</h4>
 
 上面已经差不多所有注入的方法都提到了。
