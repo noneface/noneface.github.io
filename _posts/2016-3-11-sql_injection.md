@@ -819,6 +819,30 @@ UPDATE users SET password = '1' or (select 1 from (select count(\*),concat((sele
 
 <img src="/images/sql_21.png" alt="">
 
+当然，杜绝这种注入的方法也很简单。把mysql的报错不返回给用户页面就可以了。
+
+<h4>SQLi in Header</h4>
+
+这种注入就是在提交数据的时候，后台处理了header里面的内容，那么我们就可以利用截包软件，修改数据，再发到后台进行修改。
+
+在header里面，有agent和reference可以用来利用。
+
+<h4>SQLi in Cookies</h4>
+
+同样，知识注入点在哪里的不同，注入方式上面都有讲到。
+
+<h4>Example</h4>
+
+Less-20
+
+在这个例子里面，cookie有一个name参数。
+
+在firefox中利用tamper data截取数据进行修改。
+
+<img src="/images/sql_24.png" alt="">
+
+<img src="/images/sql_25.png" alt="">
+
 <code>...待续</code>
 
 EOF
