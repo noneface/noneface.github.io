@@ -637,6 +637,108 @@ for c in range(0,count):
 
 <img src="/images/sql_13.png" alt="">
 
+
+<h4>SQLi in GET/POST/COOKIES</h4>
+
+上面已经差不多所有注入的方法都提到了。
+
+下面就是关于注入点的问题。
+
+注入无非就是非法的数据输入，后台接收后错误的执行。导致数据泄露。
+
+关于数据输入的方式，也有GET和POST，甚至在COOKIES里面。
+
+之前提到的注入都是在GET方法里面的，下面来看看在POST和COOKIES里面的注入。
+
+<h4>Example</h4>
+
+<h5>Less 11-12</h5>
+
+在这两个例子里面，都是一种基于error based的注入。
+
+其实这种注入无非是根据mysql执行报错，来构造最后执行的语句。
+
+在Less11中，在username和password里面填入
+
+‘ or '1'='1 ,这样可以直接绕过登录。也可以只在一个字段里面填写 ‘ or 1=1 #
+
+分析一下最后执行的sql语句：
+
+第一种： 
+
+SELECT username, password FROM users WHERE username='' or '1'='1' 
+
+and password='' or '1'='1' LIMIT 0,1
+
+按照执行的逻辑来看，首先username=’‘为false，‘1’=‘1’为true，
+
+所以（username=‘’ or '1'='1'）就为true，后面也就同理，加上password的false，
+
+最后又是和or里面true，所以最后的结果就为true。
+
+这里可以用一种简便的方法，也是这种登陆框最常用的绕过方法。在用户名字段任意填写，
+
+在密码字段填写 ‘ or '1'=1 ，在where语句，最后执行的语句必然是
+
+（****） or '1'='1' ，这样的bool值必然为true。
+
+第二种：
+
+SELECT username, password FROM users WHERE username='' 
+
+or 1=1 #' and password='' LIMIT 0,1
+
+这样的语句就更好的理解了，前面 username=’‘ or 1=1的值为true，
+
+#后面的内容被注释不会执行。
+
+这里有一个注释的问题就是，不能够使用--+注释
+
+需要用 ’ or 1=1 --  
+
+注意在--的前后都需要留空格,
+
+这可能是在post方法传输数据的时候存在的问题。
+
+<img src="/images/sql_17.png" alt="">
+
+
+还是同样的问题，这种注入该怎么利用？
+
+按照我的理解，应该还是可以利用union联合查询来爆数据。
+
+<img src="/images/sql_18" alt="">
+
+<h5>Less 13-14</h5>
+
+Double query injection
+
+原理上面已经讲过了，在学习post方法的这种注入过程里。
+
+又有一点别的理解。
+
+先来看看Less5中的案例：
+
+http://192.168.1.103/sqli-labs/Less-5/?id=0%27%20and%20(select%201%20from%20(select%20count(*),%20concat((select%20version()),floor(rand(0)*2))a%20from%20information_schema.tables%20group%20by%20a)x)%23
+
+如果我们把数据字段写成一个不存在的数据，并且用and链接，
+
+那么最后的结果是空，什么都不会显示。
+
+这和where中的bool值有关。
+
+那么在Less13-14中，登陆框要求输入的是username，
+
+字段留空的话最后的结果也会是空。
+
+那么我们构造语句的话，用and连接并不合适。
+
+那么可以利用or来连接。
+
+' or (select 1 from (select count(\*),concat(（select database()）,floor(rand(0)*2)）a from information_schema.tables group by a)x)
+
+<img src="/images/sql_19.png" alt="">
+
 <code>...待续</code>
 
 EOF
