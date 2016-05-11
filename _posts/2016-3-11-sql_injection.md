@@ -707,7 +707,7 @@ or 1=1 #' and password='' LIMIT 0,1
 
 按照我的理解，应该还是可以利用union联合查询来爆数据。
 
-<img src="/images/sql_18" alt="">
+<img src="/images/sql_18.png" alt="">
 
 <h5>Less 13-14</h5>
 
