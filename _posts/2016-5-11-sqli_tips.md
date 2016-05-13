@@ -48,22 +48,28 @@ UPDATE users SET PASSWORD='123123' where username='admin'#' and password='123'
 
 所以，最后执行的语句会将admin的密码修改为123123。
 
-但是你不能建立一个账号叫：‘ or 1=1 #
+那能不能建立一个 username=' or 1=1#的账号呢？
 
-它会被识别为： \’ or 1=1 #
+这是可以的。
 
-在做创建的时候，是会写入一条账号的的记录，是’ or 1=1 #,
+首先在创建用户的过程中：首先是检测是否存在用户
 
-但是你在登录的时候,同理的你的输入也会被转义特殊字符。就成了这样：
+select count(*) from users where username='\' or 1=1#'
 
-SELECT * FROM users WHERE username='\\' or 1=1 #' and password='123'
+就会创建一个 ' or 1=1#的用户。
 
-在username=‘\’，这个是不能被mysql成功执行的。
+然后在登录时
 
-看下面的例子：
+SELECT * FROM users WHERE username='\' or 1=1#' and password='123'
+
+最后在执行密码更新的时候：
+
+由于username是直接从session里面获取的，那么username=' or 1=1#
+
+到最后执行的update语句就会是：
+
+UPDATE users SET PASSWORD='123123' where username='' or 1=1#' and password='123'
+
+之后mysq里面所有的密码都变成了123123。
 
 <img src="/images/tips_3.png" alt="">
-
-<img src="/images/tips_4.png" alt="">
-
-每一个'都会被转义成 \'，那么在登录的时候，语句就无法被正常执行。
