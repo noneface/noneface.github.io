@@ -54,13 +54,13 @@ UPDATE users SET PASSWORD='123123' where username='admin'#' and password='123'
 
 首先在创建用户的过程中：首先是检测是否存在用户
 
-select count(*) from users where username='\' or 1=1#'
+select count(*) from users where username='\\' or 1=1#'
 
 就会创建一个 ' or 1=1#的用户。
 
 然后在登录时
 
-SELECT * FROM users WHERE username='\' or 1=1#' and password='123'
+SELECT * FROM users WHERE username='\\' or 1=1#' and password='123'
 
 最后在执行密码更新的时候：
 
