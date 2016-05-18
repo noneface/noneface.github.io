@@ -338,6 +338,8 @@ end
 
 将函数返回的imdb保存就ok了。
 
+<code>Warning 下面的微调代码存在问题！！！</code>
+
 <h5>2.fine tune</h5>
 
 关于对pre-trained models进行fine tune，目前只完成了对imagenet-vgg-verydeep-16.mat和imagenet-vgg-m.mat两种模型的微调，对应googlenet这个模型，任然存在问题。
