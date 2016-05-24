@@ -10,7 +10,6 @@ tag: codes
 - Email：nonefacesay@gmail.com 
 - QQ：956905550
 
----
 
 # 个人信息
 
@@ -22,7 +21,6 @@ tag: codes
  - 期望职位：Web安全工程师（实习生）
  - 期望城市：北京，杭州
 
----
 
 # 折腾过的东西
 
@@ -42,7 +40,6 @@ tag: codes
 - 开发环境：Windows/Linux
 - Web安全基础知识：Sql注入，xss
 
----
 
 # 致谢
 感谢您花时间阅读我的简历，期待能有机会和您共事。
