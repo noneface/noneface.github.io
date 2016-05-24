@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: about
 ---
 
 # 联系方式
