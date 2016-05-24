@@ -1,7 +1,5 @@
 ---
 layout: post
-title: about-me
-tag: codes
 ---
 
 # 联系方式
