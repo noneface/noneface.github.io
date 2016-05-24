@@ -1,20 +1,48 @@
 ---
 layout: default
 ---
-<div class="row">
-	<div class="col-md-12 content">	
-		<div class="about" style="padding-top:3%;">
-		</div>
-		<h1 style="text-align:center;line-height:3;"></h1>
 
-		<h1 style="text-align:center;line-height:3;">争不过朝夕</h1>
+# 联系方式
+（HR会打印你的简历，用于在面试的时候联系，所以联系方式放到最上边会比较方便）
 
-		<h1 style="text-align:center;line-height:3;">又念着往昔</h1>
+- 手机：13026215621 
+- Email：nonefacesay@gmail.com 
+- QQ：956905550
 
-		<h1 style="text-align:center;line-height:3;"></h1>
-		<br />
-		<h3 style="text-align:center;line-height:3;"></h3>
-		<h2 style="text-align:center;line-height:3;"></h2>
-	</div>	
-</div>
+---
+
+# 个人信息
+
+ - 姜昌龙/男/1996 
+ - 本科（大二）/南昌航空大学软件学院 
+ - 技术博客：http://noneface.github.io 
+ - Github：http://github.com/noneface 
+
+ - 期望职位：Web安全工程师（实习生）
+ - 期望城市：北京，杭州
+
+---
+
+# 折腾过的东西
+
+## 技术文章
+
+- [图像特征提取](http://www.noneface.com/2015/11/30/img_retrieval.html)
+- [图像特征融合（Graph Fusion）](http://www.noneface.com/2015/12/06/img_retrieval.html) 
+- [图像特征融合（Adaptive Fusion)](http://www.noneface.com/2015/12/21/image_retrieval.html)
+- [通过Sqli-labs学习注入方法](http://www.noneface.com/2016/03/11/sql_injection.html)
+- [Arduino智能小车](http://www.noneface.com/2016/01/08/wifi_car.html)
+
+# 技能清单
+
+以下均为我熟练使用的技能
+
+- 编程语言：python/c/java/c++
+- 开发环境：Windows/Linux
+- Web安全基础知识：Sql注入，xss
+
+---
+
+# 致谢
+感谢您花时间阅读我的简历，期待能有机会和您共事。
 
