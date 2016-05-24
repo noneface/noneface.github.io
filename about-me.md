@@ -1,9 +1,8 @@
 ---
-layout: default
+layout: post
 ---
 
 # 联系方式
-（HR会打印你的简历，用于在面试的时候联系，所以联系方式放到最上边会比较方便）
 
 - 手机：13026215621 
 - Email：nonefacesay@gmail.com 
