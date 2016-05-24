@@ -73,3 +73,23 @@ UPDATE users SET PASSWORD='123123' where username='' or 1=1#' and password='123'
 之后mysq里面所有的密码都变成了123123。
 
 <img src="/images/tips_3.png" alt="">
+
+<h3>Less-32</h3>
+
+这一节里面讲到的tips，是关于编码的。
+
+http://192.168.1.105/sqli-labs/Less-32/?id=1'
+
+这样提交数据，最后会通过addslash，转义 ' 字符。
+
+最后的语句也就是http://192.168.1.105/sqli-labs/Less-32/?id=1\'
+
+这样就无法去闭合前面的条件语句了。
+
+下面要介绍一个特殊的编码字符：0xbf。
+
+应为addslash()函数会转义4个字符，所以当我们输入http://192.168.1.105/sqli-labs/Less-32/?id=1%bf%27%23
+
+就会被转义成0xbf5c27，在以GBK编码时，又因为0xbf5c是一个字符，也就是把\\给去掉了。后面的'也就依然存在，能够闭合前面的条件。
+
+<img src="/images/tips_4.png" alt="">
