@@ -16,7 +16,7 @@ layout: about
  - 技术博客：http://noneface.github.io 
  - Github：http://github.com/noneface 
 
- - 期望职位：Web安全工程师（实习生）
+ - 期望职位：Web安全工程师（实习生）,安全服务（实习生）
  - 期望城市：北京，杭州
 
 
@@ -24,6 +24,8 @@ layout: about
 
 ## 技术文章
 
+- [网络安全实验室平台部分题目write up 1](http://www.noneface.com/2016/03/11/writeup_sql.html)
+- [网络安全实验室平台部分题目write up 2](http://www.noneface.com/2016/03/07/writeup_scripts.html)
 - [图像特征提取](http://www.noneface.com/2015/11/30/img_retrieval.html)
 - [图像特征融合（Graph Fusion）](http://www.noneface.com/2015/12/06/img_retrieval.html) 
 - [图像特征融合（Adaptive Fusion)](http://www.noneface.com/2015/12/21/image_retrieval.html)
@@ -31,8 +33,6 @@ layout: about
 - [Arduino智能小车](http://www.noneface.com/2016/01/08/wifi_car.html)
 
 # 技能清单
-
-以下均为我熟练使用的技能
 
 - 编程语言：python/c/java/c++
 - 开发环境：Windows/Linux
