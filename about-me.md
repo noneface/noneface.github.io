@@ -22,17 +22,23 @@ layout: about
 ## 技术文章
 
 
-- [网络安全实验室平台部分题目write up](http://www.noneface.com/2016/03/07/writeup_scripts.html)
+- [网络安全实验室平台部分题目write up]
+- (http://www.noneface.com/2016/03/07/writeup_scripts.html)
 
-- [图像特征提取](http://www.noneface.com/2015/11/30/img_retrieval.html)
+- [图像特征提取]
+- (http://www.noneface.com/2015/11/30/img_retrieval.html)
 
-- [图像特征融合（Graph Fusion）](http://www.noneface.com/2015/12/06/img_retrieval.html) 
+- [图像特征融合（Graph Fusion）]
+- (http://www.noneface.com/2015/12/06/img_retrieval.html) 
 
-- [图像特征融合（Adaptive Fusion)](http://www.noneface.com/2015/12/21/image_retrieval.html)
+- [图像特征融合（Adaptive Fusion)]
+- (http://www.noneface.com/2015/12/21/image_retrieval.html)
 
-- [通过Sqli-labs学习注入方法](http://www.noneface.com/2016/03/11/sql_injection.html)
+- [通过Sqli-labs学习注入方法]
+- (http://www.noneface.com/2016/03/11/sql_injection.html)
 
-- [Arduino智能小车](http://www.noneface.com/2016/01/08/wifi_car.html)
+- [Arduino智能小车]
+- (http://www.noneface.com/2016/01/08/wifi_car.html)
 
 # 技能清单
 
@@ -40,6 +46,11 @@ layout: about
 - 开发环境：Windows/Linux
 - Web安全基础知识：Sql注入，xss
 
+# 自我评述
+
+- 向往Geek
+- 热爱Web安全
+- 学习能力较强
 
 # 致谢
 感谢您花时间阅读我的简历，期待能有机会与您共事。
