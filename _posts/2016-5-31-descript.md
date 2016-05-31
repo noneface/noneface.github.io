@@ -72,13 +72,13 @@ pseudoHash是将md5再进行了一次编码。题目里面只提供了编码的�
 var output='';
 for(var index=0;index<string.length;index+=2){
         hexCode = string.slice(index,index+2);
-        console.log(hexCode);
+
         charCode = parseInt(hexCode,16);
-        console.log(charCode);
+
         charCode = 255-charCode;
         if (charCode>128)
         	charCode -= 128;
-        console.log(charCode);
+
         output += String.fromCharCode(charCode);
 }
 {% endhighlight %}
