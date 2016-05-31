@@ -12,21 +12,17 @@ layout: about
 # 个人信息
 
  - 姜昌龙/男/1996 
- - 本科（大二）/南昌航空大学软件学院 
+ - 本科（大二）/南昌航空大学软件学院/SoftWare Engineering 
  - 技术博客：http://noneface.github.io 
  - Github：http://github.com/noneface 
-
- - 期望职位：Web安全工程师（实习生）,安全服务（实习生）
- - 期望城市：北京，杭州
 
 
 # 折腾过的东西
 
 ## 技术文章
 
-- [网络安全实验室平台部分题目write up 1](http://www.noneface.com/2016/03/11/writeup_sql.html)
 
-- [网络安全实验室平台部分题目write up 2](http://www.noneface.com/2016/03/07/writeup_scripts.html)
+- [网络安全实验室平台部分题目write up](http://www.noneface.com/2016/03/07/writeup_scripts.html)
 
 - [图像特征提取](http://www.noneface.com/2015/11/30/img_retrieval.html)
 
@@ -40,7 +36,7 @@ layout: about
 
 # 技能清单
 
-- 编程语言：python/c/java/c++
+- 编程语言：python/c
 - 开发环境：Windows/Linux
 - Web安全基础知识：Sql注入，xss
 
