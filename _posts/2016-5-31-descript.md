@@ -8,7 +8,7 @@ tag: codes
 
 不算是很难。
 
-<code>
+{% highlight javascript %}
 /**
  * Pseudo md5 hash function
  * @param {string} string
@@ -50,7 +50,7 @@ function pseudoHash(string, method) {
 }
 document.getElementById('password').value = pseudoHash(
 '491d1e4e4f474a1d4847474b4f4846494c191a4f1a47461c4946461e484c4649', 'DECRYPT');
-</code>
+{% endhighlight %}
 
 pseudoHash是将md5再进行了一次编码。题目里面只提供了编码的函数，而解码的函数miss了。
 
@@ -68,8 +68,7 @@ pseudoHash是将md5再进行了一次编码。题目里面只提供了编码的�
 
 得出以下的解密js：
 
-<code>
-
+{% highlight javascript%}
 var output='';
 for(var index=0;index<string.length;index+=2){
         hexCode = string.slice(index,index+2);
@@ -82,8 +81,7 @@ for(var index=0;index<string.length;index+=2){
         console.log(charCode);
         output += String.fromCharCode(charCode);
 }
-
-</code>
+{% endhighlight %}
 
 上面提到了，在基础的ascii表里面，只到127,所以在加密的时候，
 
