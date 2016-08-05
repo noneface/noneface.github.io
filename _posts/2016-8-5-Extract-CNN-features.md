@@ -98,6 +98,6 @@ fobj.close()
 
 检索结果如下：
 
-<img src="images/cnn.png">
+<img src="/images/cnn.png">
 
 结果存成这样，是为了方便计算mAP。
