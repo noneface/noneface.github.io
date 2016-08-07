@@ -151,7 +151,7 @@ def predict(theta):
 	bedrooms = int(raw_input("input the number of bedroom:"))
 	data = [1, size, bedrooms]
 
-	print "%f *1000 feet, %d bedrooms,predict price: %f" %(size, bedrooms, theta.T.dot(data)*10000)
+	print "%f * 1000 feet, %d bedrooms,predict price: %f" %(size, bedrooms, theta.T.dot(data)*10000)
 
 if __name__ == '__main__':
 	X, y = loadData()
