@@ -106,6 +106,8 @@ if __name__ == '__main__':
 
 最后算出对应的最小值的参数为结果中的x。
 
-两种方法进行Gradient descent方法最后结果上的差别
+两种方法进行Gradient descent方法最后预测结果上的差别
+
+预测的人口数量为12k。
 
 <img src="/images/minimizie_test.png">
