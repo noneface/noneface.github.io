@@ -108,4 +108,4 @@ if __name__ == '__main__':
 
 两种方法进行Gradient descent方法最后结果上的差别
 
-<img src="/images/minimize_test.png">
+<img src="/images/minimizie_test.png">
