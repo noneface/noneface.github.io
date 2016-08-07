@@ -52,7 +52,7 @@ print result
 
 那么，接下来就是利用minimize函数，去确定CostFunction的最小值取值。
 
-这样就和普通函数的使用方法不太一样，每次参数减小的量3都是通过Alpha*CostFunction,
+这样就和普通函数的使用方法不太一样，每次参数减小的量都是通过Alpha*CostFunction,
 
 ### Linear Regression with one variable
 
@@ -106,3 +106,6 @@ if __name__ == '__main__':
 
 最后算出对应的最小值的参数为结果中的x。
 
+两种方法进行Gradient descent方法最后结果上的差别
+
+<img src="/images/minimize_test.png">
