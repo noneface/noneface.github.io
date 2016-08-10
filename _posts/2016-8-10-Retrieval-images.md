@@ -34,7 +34,7 @@ FLask + flask-script + flask-SQLAlchemy +... == Django
 
 功能也就是点击首页随机选择展示的一幅图片，
 
-能够在数据集中之间检索与其COS距离最小的前10幅图片并展示出来。
+能够在数据集中之间检索与其COS-distance最小的前10幅图片并展示出来。
 
 <img src="/images/search.png">
 <img src="/images/search1.png">
