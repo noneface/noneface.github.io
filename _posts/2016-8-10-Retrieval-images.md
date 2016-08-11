@@ -28,7 +28,7 @@ FLask + flask-script + flask-SQLAlchemy +... == Django
 
 也就是说，如果真的用Flask写一个项目的话，还得加上一些扩展工具。
 
-#　Front
+# Front
 
 前端的页面写的比较简洁，
 
