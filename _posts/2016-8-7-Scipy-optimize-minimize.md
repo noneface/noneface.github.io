@@ -60,6 +60,30 @@ print result
 
 来演示一遍如何使用。
 
+在minimize函数中，参数可以有不同的选择。
+
+在做Gradient descent 中，需要计算每次的cost function 偏导后的值，
+
+也就是下面gradient函数中的返回值。
+
+那么在minimize函数计算过程中，
+
+需要提供一个参数　jac，传入对应的gradient函数。
+
+options参数则可以选择迭代次数，
+
+method也可以选择使用何种的梯度下降算法进行计算。
+
+同时，由于cost function需要三个参数，
+
+而需要确定最小值对应的参数θ，
+
+所以函数定义的时候，一般将θ放在第一位。
+
+在使用minimize函数中，需要用到的训练数据X，y
+
+通过args参数传入使用。
+
 {% highlight python %}
 # -*- coding:utf-8 -*-
 
