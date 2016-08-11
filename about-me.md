@@ -11,7 +11,6 @@ title: Resume
  - 姜昌龙/男/1996 
  - 本科（大三）/南昌航空大学软件学院/SoftWare Engineering 
  - 技术博客：http://noneface.github.io 
- - Github：http://github.com/noneface 
 
 ### 折腾过的东西
 
