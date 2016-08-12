@@ -700,6 +700,16 @@ or 1=1 #' and password='' LIMIT 0,1
 
 这可能是在post方法传输数据的时候存在的问题。
 
+<code>update 2016/08/12</code>
+
+今天收到一封邮件，是关于这个问题的正确解释。
+
+可以参考：[Stackoverflow](http://stackoverflow.com/questions/38817326/in-this-case-why-the-comment-style-of-mysql-can-work/38880103#38880103)
+
+才知道，'--+'在mysql中并不是注释。
+
+涨姿势了～
+
 <img src="/images/sql_17.png" alt="">
 
 
