@@ -43,8 +43,10 @@ http://magikh0e.ihtb.org/pubHardwareHacking/ArduinoHIDDevice.html
 烧入代码之前，电脑是无法识别到Arduino的，所以需要重新插拔USB接口。
 将所需要的执行代码，烧入进Arduino。
 
-Demo
-<code>
+#### Demo
+
+{% highlight c %}
+
 uint8_t buf[8] = { 0 }; 
 
 void setup() {
@@ -66,7 +68,8 @@ void releaseKey() {
 	buf[2] = 0;
 	Serial.write(buf, 8); 
 }
-</code>
+
+{% endhighlight %}
 
 这个例子将会输出'm'。
 
