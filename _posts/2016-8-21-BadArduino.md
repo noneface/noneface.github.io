@@ -22,16 +22,20 @@ http://magikh0e.ihtb.org/pubHardwareHacking/ArduinoHIDDevice.html
 
 操作环境为Linux。
 
+#### Step 1
+
 首先需要将UNO上靠近DIGITAL插口的，左上角的一个接口与GND相接触一下既可以进入DFU模式。
 
 如图
 
 <img src="/images/arduino.jpg" alt="">
 
-#### Step 1
+在终端下依次输入以下命令。
 
 1.dfu-programmer atmega16u2 erase
+
 2.dfu-programmer atmega16u2 flash --debug Arduino-usbserial-atmega16u2-Uno-Rev3.hex
+
 3.dfu-programmer atmega16u2 reset
 
 #### Step 2
