@@ -27,9 +27,9 @@ title: Resume
 ### 技能清单
 - 编程语言：python/c
 - 开发环境：Windows/Linux
-- 熟悉Flask/Django开发框架
-- 熟悉OWASP TOP 10
-- 掌握基础Web漏洞
+- 了解Flask/Django开发框架
+- 了解OWASP TOP 10
+- 掌握基础Web漏洞原理
 
 ### 自我评述
 - 向往Geek
