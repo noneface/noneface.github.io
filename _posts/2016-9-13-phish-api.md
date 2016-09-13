@@ -103,7 +103,7 @@ class jinshan(object):
         result = self.result
         try:
             if result['success'] == 0:
-                self.phishes = False
+                self.phishes = "Unknown"
             else:
                 if result['phish'] == -1:   
                     self.phishes = "Unknown"
