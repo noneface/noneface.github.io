@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Face Recognition App —— TrackMe
+title: Face Recognition App — TrackMe
 tag: notes
 ---
 
