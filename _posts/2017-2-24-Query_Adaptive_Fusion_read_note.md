@@ -10,7 +10,7 @@ tag: codes
 
 作者提出：针对一张图片，如果某个特征得出的分数曲线，经过排序后是趋于“L”形的，那么这个特征就是一个 Good Feature。相反，某个特征得出的分数曲线，排序后是缓慢下降的，那么这个特征就是一个 Bad Feature。
 
-<img src="/images/query_adaptive_fusion_1.png" alt="">
+<img src="/images/query_adaptive_fusion_1.PNG" alt="">
 
 ### Detail
 
@@ -20,7 +20,7 @@ tag: codes
 
 作者使用了 product rule 将不同特征得出的scores 融合在一起。
 
-<img src="/images/query_adaptive_fusion_2.png" alt="">
+<img src="/images/query_adaptive_fusion_2.PNG" alt="">
 
 在 Eq. 1中，选取 k 种不同特征，得出每种特征下的 scores 值，既 s(i)，通过计算出的Weights 既w(i)进行计算， i=1,2,...,k 。
 
@@ -28,7 +28,7 @@ tag: codes
 
 Weights是根据 normalized curves 面积计算得到的值。也就是说，每一张图片不同特征所占的weight是不同的。
 
-<img src="/images/query_adaptive_fusion_3.png" alt="">
+<img src="/images/query_adaptive_fusion_3.PNG" alt="">
 
 在 Eq. 2中，A代表 normalized curves面积，若某特征 normalized curves面积越小时，该曲线应该越是趋于“L”形的，也就是一个good feature。根据表达式，其所占的weight也就更大。
 
@@ -40,7 +40,7 @@ Weights是根据 normalized curves 面积计算得到的值。也就是说，每
 
 利用这些无关图片得出的曲线，将原始特征曲线尾部score减小。
 
-<img src="/images/query_adaptive_fusion_4.png" alt="">
+<img src="/images/query_adaptive_fusion_4.PNG" alt="">
 
 在 Eq. 3中，s(i)为初始的query score，r(i) 为选取的reference score。
 
@@ -48,7 +48,7 @@ Weights是根据 normalized curves 面积计算得到的值。也就是说，每
 
 选择一条或多条合适的reference socre，将有效的将初始的query score的尾部score降低，同样也可以使靠前的错误检索的score降低，从而达到一次重新计算score排序的过程。
 
-<img src="/images/query_adaptive_fusion_5.png" alt="">
+<img src="/images/query_adaptive_fusion_5.PNG" alt="">
 
 在 Eq. 4中，R为所有reference score的集合，通过计算initial sorted score s(i)和众多reference scores的欧式距离，选择距离最小的一条或几条曲线。
 
@@ -56,7 +56,7 @@ Weights是根据 normalized curves 面积计算得到的值。也就是说，每
 
 ##### normalize socre
 
-<img src="/images/query_adaptive_fusion_6.png" alt="">
+<img src="/images/query_adaptive_fusion_6.PNG" alt="">
 
 使用Eq. 3、Eq. 4得出的中间值，得到最终的normalized score curve。
 
