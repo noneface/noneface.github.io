@@ -64,6 +64,8 @@ Weights是根据 normalized curves 面积计算得到的值。也就是说，每
 
 作者通过将query score curve进行normalized后，利用under the area of normalized score curve得出weights，最后将不同的特征检索score/distance根据product rule融合成一个新的score/distance，从而达到提升检索结果。
 
+<img src="/images/query_adaptive_fusion_7.PNG" alt="">
+
 ### Reference
 
 1.[Query-Adaptive Late Fusion for Image Search and Person Re-identification](http://www.liangzheng.com.cn/Project/project_fusion.html)
