@@ -69,3 +69,5 @@ Weights是根据 normalized curves 面积计算得到的值。也就是说，每
 ### Reference
 
 1.[Query-Adaptive Late Fusion for Image Search and Person Re-identification](http://www.liangzheng.com.cn/Project/project_fusion.html)
+
+2.[Implements with python](https://github.com/noneface/query_adaptive_fusion_inPython)
