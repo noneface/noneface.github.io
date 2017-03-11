@@ -65,13 +65,14 @@ Registry，也属于是仓库。不过它集合中的元素是 Repository。一�
 
 ### Some Problem
 
-1. 关于 Host (宿主机)的思考：
+关于 Host (宿主机)的思考：
 
 最初对这个 Host 并不是很理解，在原生的 Linux 环境下，安装 Docker 是不需要安装附加虚拟机的。如果你添加一个 Image 或者启动 Container，它只是共享了 Host 里面的 Linux Kernel。
 
 但是在 Mac 或者 Windows 下，所有的 Linux 相关 Container 都是需要基于一台虚拟机的，不管这台虚拟机是利用 Virtual box 还是通过 Hyper-v 产生的。所以在这两个平台下，Docker 的 Host 应该是运行在虚拟环境里面的机器。
 
 那么回到 Liunx Container 这个问题，针对 Linux 有不同发行版本，对应不同的 Kernel 版本。是否会产生，如果 Host 的 kernel 版本低于所要构建的Container kernel 版本？按照目前的理解，应该是会产生影响的。 
+
 
 
 ### Reference
