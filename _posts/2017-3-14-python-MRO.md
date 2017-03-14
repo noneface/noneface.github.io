@@ -60,7 +60,7 @@ class A(B, C): pass
 	L[B] = B + merge(L[D], L[E], DE) = B + merge(Do, Eo, DE)
 
 	L[A] = A + merget(L[B], L[C], BC) 
-		 = B + merge( [B + merge(Do, Eo, DE)], [B + merge(Do, Eo, DE)], BC)
+		 = B + merge( [B + merge(Do, Eo, DE)], [merge(Do, Eo, DE)], BC)
 
 ##### 2. How to Merge
 
@@ -92,26 +92,26 @@ class A(B, C): pass
 
 最后在 A 上对 BC 的线性化结果进行 Merge
 
-	L[A] = A + merge(BDEo,CDFo,BC)  
+	L[A] = A + merge(BDEo, CDFo, BC)  
 	// 取出第一个列表的头 B 进行判断，加入线性化表并且进行删除
 	
-		= A + B + merge(DEo,CDFo,C) 
+		= A + B + merge(DEo, CDFo, C) 
 		// 第一次尝试取出 D，
 		// 但是第二个列表的尾部包含D，则取下一个列表中的头进行尝试，对 C 进行判断，加入表并删除
 		    
-		= A + B + C + merge(DEOo,DFo) 
+		= A + B + C + merge(DEOo, DFo) 
 		// 回到第一个列表，取出D，进行判断，加入表后删除
 		    
-		= A + B + C + D + merge(Eo,Fo) 
+		= A + B + C + D + merge(Eo, Fo) 
 		// 取出第一个表头：E，判断并添加后删除
 		     
-		= A + B + C + D + E + merge(o,Fo) 
+		= A + B + C + D + E + merge(o, Fo) 
 		// 取出 o，但是第二个列表的尾部包含 o，则取出下一个列表中的头 F
 		
-		= A + B + C + D + E + F + merge(o,o) 
+		= A + B + C + D + E + F + merge(o, o) 
 		// 取出 o，加入线性化列表
 		
-		= A B C D E F 0
+		= A B C D E F o
 
 ### Summary
 
