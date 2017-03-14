@@ -51,13 +51,25 @@ class A(B, C): pass
 
 <code>
 	L[F] = F + merge(L[o], o) = F + L[o] = [Fo]
+</code>
+
+<code>
 	L[E] = E + merge(L[o], o) = E + L[o] = [Eo]
+</code>
+
+<code>
 	L[D] = D + merge(L[o], o) = D + L[o] = [Do]
 </code>
 
 <code>
 	L[C] = C + merge(L[D], L[F], DF) = C + merge(Do, Fo, DF)
+</code>
+
+<code>
 	L[B] = B + merge(L[D], L[E], DE) = B + merge(Do, Eo, DE)
+</code>
+
+<code>
 	L[A] = A + merget(L[B], L[C], BC) = B + merge( [B + merge(Do, Eo, DE)], [B + merge(Do, Eo, DE)], BC)
 </code>
 
@@ -76,12 +88,21 @@ class A(B, C): pass
 	L[C] = C + merge(Do, Fo, DF)  
 		// 取出第一个列表 [Do]，那么这个列表的头：D，没有出现在其他列表的尾部
 		// 将其加入线性化结果中，并删除在其他列表中包含的 D
+</code>
+
+<code>
 		 = C + D + merge(o, Fo, F) 
 		// 取出第一个列表 [o]，那么这个列表的头：o，有出现在第二个列表中
 		// 那么查找下一个列表 [Fo]，列表的头为：F，没有出现在其他列表的尾部，则加入线性化的结果中，并删除相关元素
+</code>
+
+<code>
 		 = C + D + F + merge(o, o)
 		// 接下来就是相同的操作，这里需要注意的是：当前取的并不是第一个列表，那么等到有 头 加入到线性化结果中时，下一次选取的仍然是第一个列表
 		 = [CDFo]
+</code>
+
+<code>
 	L[B] = [BDEo]
 </code>
 
@@ -89,12 +110,31 @@ class A(B, C): pass
 
 <code>
 	L[A] = A + merge(BDEo,CDFo,BC)  // 取出第一个列表的头 B 进行判断，加入线性化表并且进行删除
+
+</code>
+
+<code>
 	     = A + B + merge(DEo,CDFo,C)  // 第一次尝试取出 D，
 	     // 但是第二个列表的尾部包含D，则取下一个列表中的头进行尝试，对 C 进行判断，加入表并删除
+</code>
+
+<code>
 	     = A + B + C + merge(DEOo,DFo) // 回到第一个列表，取出D，进行判断，加入表后删除
+</code>
+
+<code>
 	     = A + B + C + D + merge(Eo,Fo) // 取出第一个表头：E，判断并添加后删除
+</code>
+
+<code>
 	     = A + B + C + D + E + merge(o,Fo)  // 取出 o，但是第二个列表的尾部包含 o，则取出下一个列表中的头 F
+</code>
+
+<code>
 	     = A + B + C + D + E + F + merge(o,o) // 取出 o，加入线性化列表
+</code>
+
+<code>
 	     = A B C D E F 0
 </code>
 
