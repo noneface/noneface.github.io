@@ -39,7 +39,7 @@ Huffman 树，又称最优树，是一类带权路径最短的树。
 
 :P 其实算不上什么难点....
 
-{% highlihgt python%}
+{% highlight python%}
 
 # -*- coding: utf-8 -*-
 
