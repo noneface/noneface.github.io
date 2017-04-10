@@ -7,4 +7,4 @@ paginate: 13
 paginate_path: "/page:num" 
 highlighter: rouge
 gems: [jekyll-paginate]
-
+comments: true
