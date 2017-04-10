@@ -99,7 +99,7 @@ class A(B, C): pass
 		// 第一次尝试取出 D，
 		// 但是第二个列表的尾部包含D，则取下一个列表中的头进行尝试，对 C 进行判断，加入表并删除
 		    
-		= A + B + C + merge(DEOo, DFo) 
+		= A + B + C + merge(DEo, DFo) 
 		// 回到第一个列表，取出D，进行判断，加入表后删除
 		    
 		= A + B + C + D + merge(Eo, Fo) 
