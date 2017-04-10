@@ -59,8 +59,8 @@ class A(B, C): pass
 
 	L[B] = B + merge(L[D], L[E], DE) = B + merge(Do, Eo, DE)
 
-	L[A] = A + merget(L[B], L[C], BC) 
-		 = B + merge( [B + merge(Do, Eo, DE)], [merge(Do, Eo, DE)], BC)
+	L[A] = A + merge(L[B], L[C], BC) 
+		 = A + merge([B + merge(Do, Eo, DE)], [C + merge(Do, Eo, DE)], BC)
 
 ##### 2. How to Merge
 
