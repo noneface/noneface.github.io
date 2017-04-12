@@ -1,6 +1,5 @@
 ---
-layout: post
-tag: notes
+layout: default
 ---
 
 ### About Me
