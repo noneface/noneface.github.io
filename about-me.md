@@ -1,7 +1,9 @@
 ---
 layout: post
 title: About Me
+tag: notes
 ---
+
 ### About Me
 
 - Name: noneface
