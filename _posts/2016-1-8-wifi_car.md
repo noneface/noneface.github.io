@@ -13,3 +13,7 @@ tag: codes
 <a href="https://github.com/noneface/wifi_car">https://github.com/noneface/wifi_car</a>
 
 已将小车的arduino和django server代码push到github上。
+
+演示视频：
+
+http://v.youku.com/v_show/id_XMjcwOTc3ODk4MA==.html?spm=a2h3j.8428770.3416059.1
