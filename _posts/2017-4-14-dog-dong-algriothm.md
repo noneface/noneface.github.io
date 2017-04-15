@@ -176,6 +176,7 @@ print sale_price
 背包问题中的 背包剩余容量==当前可答对题数，每个物品==每道题目
 
 最后的数学模型：
+
                 1   if i=0 and j=0
     f(i, j) =   0   if i=0 and j>0
                 f(i-1, j)*(1-pi)    if j=0
