@@ -1,6 +1,6 @@
 ---
 layout: post
-title: tmux & vim settings for developing environments
+title: tmux & vim settings for R & D environment
 tag: codes
 ---
 
