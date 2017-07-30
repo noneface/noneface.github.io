@@ -5,7 +5,6 @@ title: About Me
 
 ### About Me
 
-- noneface
 - nonefacesay#gmail.com 
 - Web 安全/ Python 开发
 - 渣二本 SE
@@ -15,7 +14,7 @@ title: About Me
 ### Wish List
 
 1. <del> Knownsec 实习 </del>
-2. 生存 - 北京 at least for 6 months
+2. 生存 - 北京 at least for 6 months <code>已达成 1/6</code>
 3. 经济独立
 4. 攒钱买 MBPR
 5. 找对象
