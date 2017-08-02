@@ -185,7 +185,7 @@ if __name__ == '__main__':
 	print replace("We are happy")
 
 
-{% endhighlight%}
+{% endhighlight %}
 
 因为在 Python 里面，str 类型的数据是 immutable ，一旦对象产生之后就无法进行修改。
 
@@ -229,7 +229,7 @@ if __name__ == '__main__':
 	a = [7, 8, 6]
 	print min(a)
 
-{% endhighlight%}
+{% endhighlight %}
 
 和书上的思路有点不一样，中间元素，只可能存在于前面的数组，或者后面部分的数组。
 
