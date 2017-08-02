@@ -204,7 +204,7 @@ if __name__ == '__main__':
 
 分割成两部分的子数组，前部分数组一定会大于后部分的数组。所以，这样首先缩小范围，再利用二分进行查找。
 
-{% highlihgt python %}
+{% highlight python %}
 
 # -*- coding:utf-8 -*-
 
