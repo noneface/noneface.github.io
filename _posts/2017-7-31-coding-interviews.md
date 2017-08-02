@@ -164,4 +164,75 @@ if __name__ == '__main__':
 
 在剩下的 m[2..3][0..1] 中查找，也就是从 m[2][1]，开始，7 等于 7，查找结束。
 
-统计下来，只需要比较 5 次，既可以判断存不存在，最差的情况下，也就只需要比较 8 次左右。
+统计下来，只需要比较 5 次，既可以判断存不存在，最差的情况下，也就只需要比较 8 次左右。 
+
+
+
+### Question 3 替换空格
+
+	请实现一个函数，把字符串的每个空格替换成“%20”。例如输入“We are happy”，则输出“We%20are%20happy”。
+
+这个题目用 Python 做起来就十分简单了，如果写的代码比较 Pythonic 的话就是：
+
+{% highlight python %}
+# -*- coding:utf-8 -*-
+
+def replace(input_str):
+	return input_str.replace(' ', '%20')
+
+
+if __name__ == '__main__':
+	print replace("We are happy")
+
+
+{% endhighlight%}
+
+因为在 Python 里面，str 类型的数据是 immutable ，一旦对象产生之后就无法进行修改。
+
+所以，不能以操作数组的方式操作 str 对象的每个字符。
+
+###### 貌似用 Python 做《剑指 Offer》上面的题目，感觉都没有涉及到很多基础的，所以部分题目考虑跳过。
+
+
+### Question 8 旋转数组的最小数字
+
+	把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3, 4, 5, 1, 2}为{1, 2, 3, 4, 5}的过一个旋转，该数组的最小值为 1。
+
+其实这就是一个 二分查找 的变异。
+
+因为原数组是一个递增有序的，所以在旋转之后，分割成两部分也会是有序的，
+
+分割成两部分的子数组，前部分数组一定会大于后部分的数组。所以，这样首先缩小范围，再利用二分进行查找。
+
+{% highlihgt python %}
+
+# -*- coding:utf-8 -*-
+
+def min(trans_list):
+	min_index = 0
+	max_index = len(trans_list) - 1
+
+	while min_index <= max_index:
+		if max_index - min_index == 1:
+			mid_index = max_index
+			break
+		
+		mid_index = (min_index+max_index)/2
+
+		if(trans_list[min_index] <= trans_list[mid_index]):
+			min_index = mid_index
+		else:
+			max_index = mid_index
+	return trans_list[mid_index]
+
+if __name__ == '__main__':
+	a = [7, 8, 6]
+	print min(a)
+
+{% endhighlight%}
+
+和书上的思路有点不一样，中间元素，只可能存在于前面的数组，或者后面部分的数组。
+
+如果中间元素大于 min_index 那么，那么中间元素就是前面部分递增数组的一个数，最小值只会在后面部分，初步估计只能是 中间元素之后，
+
+如果中间元素小于 min_index，那么中间元素不是前面部分的递增数组，中间元素就一定也会大于 max_index。
