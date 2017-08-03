@@ -236,3 +236,57 @@ if __name__ == '__main__':
 如果中间元素大于 min_index 那么，那么中间元素就是前面部分递增数组的一个数，最小值只会在后面部分，初步估计只能是 中间元素之后，
 
 如果中间元素小于 min_index，那么中间元素不是前面部分的递增数组，中间元素就一定也会大于 max_index。
+
+
+### Question 9 斐波那契数列
+
+	写一个函数，输入 n，求斐波那契数列的第 n 项。
+
+这个题目很简单，最常见的解法就是递归
+
+{% highlight python %}
+
+# -*- coding:utf-8 -*-
+
+def fib(i):
+    if i < 2: return i
+    return fib(i-1) + fib(i-2)
+
+if __name__ == '__main__':
+	print fib(10)
+
+{% endhighlight %}
+
+但是这样的解法，虽然简单，计算 n 比较大的时候，会因为函数调用栈深度太大，从而影响结果以及最后的输出。
+
+利用动态规划的思路，可以将已经计算过的值进行 cache 存储，这样有利于提高计算速度。
+
+{% highlight python %}
+
+# -*- coding:utf-8 -*-
+
+from functools import wraps
+
+def memo(func):
+    cache = {}
+
+    @wraps(func)
+    def wrap(*args):
+        if args not in cache:
+            cache[args] = func(*args)
+        return cache[args]
+    return wrap
+
+@memo
+def fib(i):
+	if i < 2: return i
+	return fib(i-1) + fib(i-2)
+
+if __name__ == '__main__':
+	print fib(10)
+
+{% endhighlight %}
+
+这样执行起来，速度就会非常的快，利用空间换取时间效率。 
+
+可以比较两者在计算 fib(100) 的时间差异。
