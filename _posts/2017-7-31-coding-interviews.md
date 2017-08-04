@@ -290,3 +290,35 @@ if __name__ == '__main__':
 这样执行起来，速度就会非常的快，利用空间换取时间效率。 
 
 可以比较两者在计算 fib(100) 的时间差异。
+
+### Question 11 数值的整数次方
+
+	实现一个函数 f(base, exponent)，求 base 的 exponent 的次方。不得使用库函数。
+
+想到的方法是用二分法来结局，例如求一个 32 次方的数，那么只需要求 16 次方，在进行平方就可以了，以此类推。
+
+{% highlight python %}
+
+#coding: utf-8
+
+def power(base, exponent):
+	if exponent == 0:
+		return 1
+	if exponent == 1:
+		return base
+
+	result = power(base, exponent/2)
+	result *= result
+
+	if (exponent % 2 ==1):
+		result *= base
+
+	return result
+
+if __name__ == '__main__':
+	print power(2, 5)
+
+
+{% endhighlight %}
+
+这样，在时间效率上得到了有效的提升。
