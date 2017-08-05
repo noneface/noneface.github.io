@@ -324,3 +324,198 @@ if __name__ == '__main__':
 {% endhighlight %}
 
 这样，在时间效率上得到了有效的提升。
+
+### Question 12 打印 1 到最大的 n 位数
+
+	输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数即 999。
+
+如果直接根据题目来，这道题目非常简单，但是再考虑大数的情况下，最合适的方法并不是直接用整数作为输出，而是依靠字符串拼接。
+
+{% highlight python %}
+#coding: utf-8
+
+from __future__ import print_function
+
+def print_num(number):
+	if len(number) == 1:
+		print(number)
+	else:
+		for i in range(len(number)):
+			if number[i] != '0':
+				break
+		print(number[i:])
+
+
+def print_to_max(count, n, number=''):
+	if n <= 0:
+		print_num(number)
+		return number[:count-n-1]
+
+	for i in '0123456789':
+		number += i
+		number = print_to_max(count , n-1, number)
+
+	return number[:count-n-1]
+
+if __name__ == '__main__':
+	print_to_max(3, 3)
+
+{%  endhighlight %}
+
+利用 print_to_max() 递归的技巧，实现了排列组合，这里主要依靠返回对应长度的字符串，并且适当的时候输出。
+
+其实，更 pythonic 的写法应该是：
+
+{% highlight python %}
+#coding: utf-8
+
+from itertools import combinations_with_replacement
+
+if __name__ == '__main__':
+	for i in combinations_with_replacement('0123456789', 3):
+		print i
+
+{% endhighlight%}
+
+不得不说，
+
+life is short, i need python
+
+
+### Question 13 在 O(1) 的时间删除链表结点
+
+	给定单向链表的头指针和一个结点指针，定义一个函数在 O(1) 时间删除该节点。
+
+这里描述的指针，就直接可以理解为是一个对象就可以了。
+
+首先用 python 实现一个链表的数据结构。
+
+链表的头结点默认为不存放内容。
+
+{% highlight python %}
+#coding: utf-8
+
+class node(object):
+	def __init__(self, value, next_node):
+		
+		self.value = value
+		self.next = next_node
+
+def show_link(head):
+
+	p = head.next
+	while p is not None:
+		print p.value
+		p = p.next
+
+def delete_node(head, node):
+
+	if head.next is None:
+		return
+
+	if node.next is not None:
+		n_next = node.next
+		node.value = n_next.value
+		node.next = n_next.next
+	else:
+		p = head.next
+		while(p.next != node):
+			p = p.next
+		p.next = None
+
+
+if __name__ == '__main__':
+	
+	e = node('e', None)
+	d = node('d', e)
+	c = node('c', d)
+	b = node('b', c)
+	a = node('a', b)
+	head = node(None, a)
+	show_link(head)
+	print '-------------'
+	# to delete c in O(1)
+	delete_node(head, e)
+	show_link(head)
+
+{% endhighlight %}
+
+这里的思路，使用的是直接替换当前需要删除结点的内容，利用当前结点能找到的下一个结点。
+
+需要考虑特殊情况，如果待删除的结点为最后一个结点的话，还是需要遍历一遍链表，找到待删除结点的前一个结点才能解决。
+
+### Question 14 调整数组的顺序使奇数位于偶数前面
+	
+	输入一个整数数组，实现一个函数来调整该数组中数组的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。
+
+{% highlight python %}
+#coding: utf-8
+
+def swap(num_list):
+	i = 0
+	j = len(num_list) - 1
+
+	while i < j:
+		if num_list[i] % 2 == 0:
+			if num_list[j] % 2 == 1:
+				num_list[i], num_list[j] = num_list[j], num_list[i]
+			else:
+				j -= 1
+		else:
+			i += 1
+	return num_list
+
+if __name__ == '__main__':
+	a = [1,3,2,4,5]
+
+	b = swap(a)
+	print b
+
+{% endhighlight %}
+
+考虑可扩展性，例如要求数组分成两部的条件为，前部分为能被 3 整除，后半部分不能被 3 整除。
+
+这样，将判断条件单独抽象为一个函数。
+
+{% highlight python %}
+
+#coding: utf-8
+
+def divide_2(num):
+	if num % 2 == 0:
+		return True
+	else:
+		return False
+
+def divide_3(num):
+	if num % 3 == 0:
+		return True
+	else:
+		return False
+
+def swap(num_list, bool_function):
+	i = 0
+	j = len(num_list) - 1
+
+	while i < j:
+		if bool_function(num_list[i]):
+			if not bool_function(num_list[j]):
+				num_list[i], num_list[j] = num_list[j], num_list[i]
+			else:
+				j -= 1
+		else:
+			i += 1
+	return num_list
+
+if __name__ == '__main__':
+	a = [1,3,4,2,5]
+
+	b = swap(a, divide_2)
+	print b
+
+	c = swap(a, divide_3)
+	print c
+
+{% endhighlight %}
+
+这样情况下就可以根据不同的条件，对数组进行调整。
