@@ -519,3 +519,166 @@ if __name__ == '__main__':
 {% endhighlight %}
 
 这样情况下就可以根据不同的条件，对数组进行调整。
+
+### Question 15 链表中倒数第 k 个结点
+	
+	输入一个链表，输出该链表中倒数第 K 个结点。例如一个链表有 6 个结点，从头结点开始它们的值依次是1、2、3、4、5、6，这个链表的倒数第 3 个结点是值为 4 的结点。
+
+一个链表的倒数 k 个结点，正常的解法，需要先走到尾端，然后从末尾回溯，但是单向链表怎么回溯呢？再简单一点的解法，应该就是遍历一遍记住链表长度，再遍历一遍根据 k 确定位置。
+
+效率更高的方法，应该是先初始化一个变量 p 指向为链表的头，在每走一步的情况下，一个计数器 +1，当计数器为 K 的时候，初始化一个指向链表头的变量 q，之后两个变量同时移动，当 p 到链表末尾时，q 就是倒数第 k 个结点。
+
+{% highlight python %}
+
+#coding: utf-8
+
+class node(object):
+	def __init__(self, value, next_node):
+		
+		self.value = value
+		self.next = next_node
+
+	def show_link(self):
+
+		p = self.head.next
+		while p is not None:
+			print p.value
+			p = p.next
+
+def find_k(link, k):
+	p = link
+	q = None
+	count = 1
+
+	while p != None:
+		if q is not None:
+			q = q.next
+
+		if q is None and count == k:
+			q = link
+		p = p.next
+		count += 1
+
+	return q
+
+if __name__ == '__main__':
+	e = node('5', None)
+	d = node('4', e)
+	c = node('3', d)
+	b = node('2', c)
+	a = node('1', b)
+
+	print find_k(a, 2).value
+
+{% endhighlight %}
+
+类似的问题还有
+	
+	1. 求链表的中间结点，两个变量，一个变量每次走一个结点，一个变量每次走两个结点。当走到末尾时，慢的结点就是链表中间结点。
+	2. 判断单向链表是否成环，同样是两个变量，一个每次走一步，一个每次走两步，看快的结点能否追上慢的结点。
+
+### Question 16 反转链表
+
+	定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。
+
+{% highlight python %}
+
+#coding: utf-8
+
+class node(object):
+	def __init__(self, value, next_node):
+		
+		self.value = value
+		self.next = next_node
+
+	def show_link(self):
+
+		p = self.next
+		while p is not None:
+			print p.value
+			p = p.next
+
+def reverser_link(link):
+	p = link
+	q = link.next
+	p.next = None
+	while q != None:
+		temp = q.next
+		q.next = p.next
+		p.next = q
+
+		q = temp
+
+	return p
+
+if __name__ == '__main__':
+	e = node('5', None)
+	d = node('4', e)
+	c = node('3', d)
+	b = node('2', c)
+	a = node('1', b)
+
+	head = node(None, a)
+
+	head.show_link()
+
+	reverse_head = reverser_link(head)
+	reverse_head.show_link()
+
+{% endhighlight %}
+
+这种反转也称为原地反转。前提条件是链表的头结点不存放内容，如果考虑头结点存放内容的话，反转就需要再考虑其他的因素。
+
+考虑头结点存放内容的话：
+
+{% highlight python %}
+
+#coding: utf-8
+
+class node(object):
+	def __init__(self, value, next_node):
+		
+		self.value = value
+		self.next = next_node
+
+	def show_link(self):
+
+		p = self
+		while p is not None:
+			print p.value
+			p = p.next
+
+
+def reverse_link(link):
+	p_reverse_head = None
+	p_node = link
+	p_prev = None
+
+	while p_node is not None:
+		p_next = p_node.next
+
+		if p_next is None:
+			p_reverse_head = p_node
+
+		p_node.next = p_prev
+
+		p_prev = p_node
+		p_node = p_next
+	return p_reverse_head
+
+
+if __name__ == '__main__':
+	e = node('5', None)
+	d = node('4', e)
+	c = node('3', d)
+	b = node('2', c)
+	a = node('1', b)
+
+
+	a.show_link()
+	print '-----'
+	a_reverse = reverse_link(a)
+	a_reverse.show_link()
+
+{% endhighlight %}
+
