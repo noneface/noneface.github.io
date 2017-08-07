@@ -682,3 +682,184 @@ if __name__ == '__main__':
 
 {% endhighlight %}
 
+### Question 17 合并两个排序的链表
+
+	输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
+
+{% highlight python %}
+
+#coding: utf-8
+
+class node(object):
+	def __init__(self, value, next_node):
+		
+		self.value = value
+		self.next = next_node
+
+	def show_link(self):
+
+		p = self
+		while p is not None:
+			print p.value
+			p = p.next
+
+
+def merge(link_a, link_b):
+	
+	if link_a is None:
+		return link_b
+
+	if link_b is None:
+		return link_a
+
+	merge_link = node(None, None)
+
+	if link_a.value > link_b.value:
+		merge_link = link_b
+		merge_link.next = merge(link_a, link_b.next)
+	else:
+		merge_link = link_a
+		merge_link.next = merge(link_a.next, link_b)	
+	return merge_link
+
+
+if __name__ == '__main__':
+	
+	f = node(9, None)
+	e = node(7, f)
+	d = node(6, e)
+
+	c = node(8, None)
+	b = node(2, c)
+	a = node(1, b)
+
+	merge_link = merge(a, d)
+
+	merge_link.show_link()
+
+{% endhighlight %}
+
+这是利用递归的思想，将问题拆分成各个子问题。
+
+### Question 18 树的子结构
+
+	输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。
+
+思路也是利用递归的思想，先从 B 的根结点出发，遍历 A 的结点，找到相同的之后，从左右子结点开始递归遍历。
+
+{% highlight python %}
+#coding: utf-8
+
+class BinaryTree(object):
+	def __init__(self, value, left, right):
+		self.value = value
+		self.left = left
+		self.right = right
+
+
+def has_sub_tree(tree_a, tree_b):
+	result = False
+
+	if tree_a is not None and tree_b is not None:
+		if tree_a.value == tree_b.value:
+			result = does_treea_have_treeb(tree_a, tree_b)
+		if not result:
+			result = has_sub_tree(tree_a.left, tree_b)
+		if not result:
+			result = has_sub_tree(tree_a, tree_b.left)
+	return result
+
+def does_treea_have_treeb(tree_a, tree_b):
+	if tree_b is None:
+		return True
+	if tree_a is None:
+		return False
+
+	if tree_a.value != tree_b.value:
+		return False
+
+	return does_treea_have_treeb(tree_a.left, tree_b.left) \
+			and does_treea_have_treeb(tree_a.right, tree_b.right)
+
+if __name__ == '__main__':
+	
+	a_4 = BinaryTree(4, None, None)
+	a_7 = BinaryTree(7, None, None)
+	a_2 = BinaryTree(2, a_4, a_7)
+
+	a_9 = BinaryTree(9, None, None)
+
+	a_8 = BinaryTree(8, a_9, a_2)
+	a_7 = BinaryTree(7, None, None)
+	a_root = BinaryTree(8, a_8, a_7)
+
+	b_9 = BinaryTree(9, None, None)
+	b_2 = BinaryTree(2, None, None)
+	b_root = BinaryTree(8, b_9, b_2)
+
+	print has_sub_tree(a_root, b_root)
+
+{% endhighlight %}
+
+### Question 19 二叉树的镜像
+
+	请完成一个函数，输入一个二叉树，该函数输出她的镜像
+
+{% highlight python %}
+#coding: utf-8
+
+class BinaryTree(object):
+	def __init__(self, value, left, right):
+		self.value = value
+		self.left = left
+		self.right = right
+
+	def show(self):
+		p = self
+		if p is not None:
+			print p.value
+
+		if p.left:
+			self.left.show()
+		if p.right:
+			self.right.show()
+
+def trans_tree(tree):
+
+	if tree is None:
+		return
+	if tree.left is None and tree.right is None:
+		return 
+
+	temp = tree.left
+	tree.left = tree.right
+	tree.right = temp
+
+	if tree.left:
+		trans_tree(tree.left)
+	if tree.right:
+		trans_tree(tree.right)
+if __name__ == '__main__':
+	
+	a_4 = BinaryTree(4, None, None)
+	a_7 = BinaryTree(7, None, None)
+	a_2 = BinaryTree(2, a_4, a_7)
+
+	a_9 = BinaryTree(9, None, None)
+
+	a_8 = BinaryTree(8, a_9, a_2)
+	a_7 = BinaryTree(7, None, None)
+	a_root = BinaryTree(8, a_8, a_7)
+
+	b_9 = BinaryTree(9, None, None)
+	b_2 = BinaryTree(2, None, None)
+	b_root = BinaryTree(8, b_9, b_2)
+
+	a_root.show()
+	trans_tree(a_root)
+	print '----'
+	a_root.show()	
+
+{% endhighlight %}
+
+同样是把问题划分成子问题解决。
