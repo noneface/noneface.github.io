@@ -863,3 +863,115 @@ if __name__ == '__main__':
 {% endhighlight %}
 
 同样是把问题划分成子问题解决。
+
+
+### Question 29 数组中出现次数超过一半的数字
+
+	数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为 9 的数组 {1， 2， 3， 2， 2， 2， 5，4，2}。由于数字 2 在数组张出现了 5 次，超过数组长度的一半，因此输出2。
+
+有两种解法，一种是基于快排里面的 Partition，选定一个数，如果这个数字的下标刚刚好是 n/2，那么因为已经将数进行分块，所有比 这个数小的数字，都在其左边，比这个数字大的，都在右边，再加上重复出现次数超过数组的一半，所以中间这个数一定是出现次数超过一半的数字。
+
+还有一种解法，因为数组有一个数字出现的次数超过数组长度的一半，也就是说它出现的次数比其他所有数字出现的次数的和还要多。因此我们可以考虑在遍历数组的时候保存两个值：一个是数组中的数字，一个是次数。当我们遍历到下一个数字的时候，如果下一个数字和我们之前保存的数字相同，则次数加 1 ，如果下一个数字和我们之前保存的数字不同，则次数减 1，如果次数为 0，我们需要保存一下个数字，并把次数设为 1。最后的数字，就是我们需要找到的次数。
+
+具体实现：
+
+{% highlight python %}
+
+# coding: utf-8
+
+def more_than_half(num):
+	result = num[0]
+	count = 1
+
+	for i in num[1:]:
+		if count == 0:
+			result = i
+			continue
+
+		if i == result:
+			count += 1
+		else:
+			count -= 1
+	return result
+
+if __name__ == '__main__':
+	
+	a = [1, 2, 3, 2, 2, 2, 5, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4]
+	num = more_than_half(a)
+	print num
+
+{% endhighlight %}
+
+### Question 30 最小的 k 个数
+
+	输入 n 个整数，找出其中最小的 k 个数，例如输入 4，5，1，6，2，7，3，8 这 8 个数字，则最小的 4 个数字是 1，2，3，4
+
+一个时间复杂度为 O(nlogk) 的解法。
+
+使用一个大小为 k 的容器来存储最小的 k 个数字，对于每次输入的数，如过容器中数字少于 k 个，则直接把输入的数放入容器，如果容器中已经有 k 个数，则从容器中取出最大数，与输入数比比较，如果输入的数大于容器中最大数，则丢弃输入的数，否则替换容器中的最大数。
+
+在这个方法中，比较重要的一点就是实现一个容器，便于我们取出容器中的最大数。
+
+{% highlight python %}
+
+# coding: utf-8
+
+import heapq
+
+if __name__ == '__main__':
+	a = [4,5,1,6,2,7,3,8]
+
+	print heapq.nsmallest(3, a)
+
+{% endhighlight %}
+
+### Question 31 连续子数组的最大和
+
+	输入一个整型数组，数组里面有正数也有负数，数组中一个或连续的多个整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为 O(n)
+
+可以使用动态规划来解决这个问题。
+			
+			pData[i] i=0 or f(i-1)<=0
+	f(i) = 
+			f(i-1) + pData[i] i!=0 and f(i-1)>0
+
+简单的理解为，要求 n 个数字的数组的最大子数组，那么可以先求 n-1 个数字的数组的最大子数组，这样不断递推下去。
+
+{% highlight python %}
+# coding: utf-8
+
+# coding: utf-8
+
+
+def sum_max(num):
+
+	result = [0] * len(num)
+
+	for i in range(len(num)):
+		if i == 0 or result[i-1] <= 0:
+			result[i] = num[i]
+		if i != 0 and result[i-1] > 0:
+			result[i] = result[i-1] + num[i]
+	return result
+
+if __name__ == '__main__':
+	a = [1, -2, 3, 10, -4, 7, 2, -5]
+
+	b = sum_max(a)
+
+	max_i = 0
+	for i in range(len(b)):
+		if b[i] > b[max_i]:
+			max_i = i
+	print b[max_i]  # 子数组最大
+
+	max_num = b[max_i]
+
+	list_s = []
+	while max_num != 0:
+		max_num -= a[max_i]
+		list_s.append(a[max_i])
+		max_i -= 1
+	print list_s  # 构成最大子数组的数组
+
+{% endhighlight %}
