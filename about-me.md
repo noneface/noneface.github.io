@@ -14,12 +14,11 @@ title: About Me
 ### Wish List
 
 1. <del> Knownsec 实习 </del>
-2. <del>生存 - 北京 at least for 6 months <code>已达成 3/6</code> </del>
-3. 经济独立
-4. 攒钱买 rMBP
-5. 找对象
-6. 财务自由
+2. 经济独立
+3. <del> 攒钱买 rMBP </del> (提前预支实现)
+4. 找对象
+5. 财务自由
 
 
-##### update in: 2017/11/26 20:17
+##### update in: 2018/03/17 15:00
 ###### 积累沉淀。
