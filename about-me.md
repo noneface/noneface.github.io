@@ -15,10 +15,11 @@ title: About Me
 
 1. <del> Knownsec 实习 </del>
 2. 经济独立
-3. <del> 攒钱买 rMBP </del> (提前预支实现)
+3. <del> 攒钱买 rMBP </del> 
 4. 找对象
 5. 财务自由
 
 
-##### update at: 2018/03/17 15:00
+
+##### update at: 2018/07/29
 ###### 积累沉淀。
