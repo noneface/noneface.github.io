@@ -5,7 +5,7 @@ github_username:  noneface
 markdown: kramdown
 paginate: 13
 paginate_path: "/page:num" 
-pygments: True 
+# pygments: True
 highlighter: pygments
 gems: [jekyll-paginate]
 comments: true
