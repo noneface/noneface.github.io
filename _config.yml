@@ -6,6 +6,6 @@ markdown: kramdown
 paginate: 13
 paginate_path: "/page:num" 
 # pygments: True
-highlighter: pygments
+highlighter: rouge
 gems: [jekyll-paginate]
 comments: true
