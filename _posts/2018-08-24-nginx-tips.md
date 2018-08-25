@@ -29,7 +29,7 @@ Nginx 进行升级步骤其实很简单，主要为以下：
     /usr/local/nginx/logs/nginx.pid 此文件保存的内容为：当前运行的nginx进程pid
     
     当发送 -USR2 到 nginx 进程时 官方解释（After that USR2 signal should be sent to the master process. The master process first renames its file with the process ID to a new file with the .oldbin suffix, e.g. /usr/local/nginx/logs/nginx.pid.oldbin, then starts a new executable file that in turn starts new worker processes）大意就是，先回将老的进程pid 备份到  /usr/local/nginx/logs/nginx.pid.oldbin, 然后开启一个新的 nginx 进程（升级后的版本，执行文件为 /usr/local/nginx/sbin/nginx 和旧版本nginx为同一路径）
-10. 执行 -USR2 命令，相当于同时跑着两个nginx进程，旧版本nginx在处理进行切换过程中仍在处理的请求，而所有的新请求会转向新的nginx进程
+10. 执行 -USR2 命令，相当于同时跑着两个nginx进程，同时处理所有的请求。
 11. 当旧版本nginx进程处理完所有请求，执行 kill -WINCH \`cat /usr/local/nginx/logs/nginx.pid.oldbin\`，此nginx进程的 worker process 会进行 shut down gracefully, 最后会进行 exit。 所有的命令都是 master  process 向 worker process 发送的。
 12. 最后结束旧版本nginx进程的 master process  kill -QUIT \`cat /usr/local/nginx/logs/nginx.pid.oldbin\`
 13. 从第9-12步，nginx Makefile 中有提供 make upgrade 选项，可以考虑直接操作。但是慎重！！ 因为里面直接 sleep 1 后直接quit 旧版本的 master process。 有的请求不一定 1s 内就可以处理完的话，要考虑进去。
@@ -131,3 +131,59 @@ ngx_add_inherited_sockets 方法里面，有一处使用了 getenv(NGINX_VAR)，
     ctx.envp = (char *const *) env;
 
     pid = ngx_execute(cycle, &ctx);   // call execute func
+
+明白了。
+
+共享环境变量的方法，并不是说，真的在系统环境变量里面，也就是说在shell 里面执行 echo $NGINX 就能看到对应的 listen fd.
+
+而是在旧的nginx 进程中，把设置的listen fd 放在了一个变量里面 ctx.envp，同时，在执行 execve() 这个函数的第三个参数，ctx.envp-> envp 是子进程读取的环境变量，所以在新的nginx 进程环境变量中，可以读取到 $NGINX 的值，同时，子进程也会继承系统环境变量。
+
+所以，如果提前在系统环境变量中设置 $NGINX=1;2;3， 在执行操作 -USR2 的时候，同样会出现错误。
+
+
+代码简化一下过程就是
+
+父进程 旧的 NGINX 进程中
+
+{% highlight c %}
+
+#include<stdio.h>
+#include<unistd.h>
+
+int main(int arg, char **args)
+{
+    char *argv[]={"sub",NULL};
+
+    char *envp[]={"NGINX=123"}; //传递给执行文件新的环境变量数组
+
+    execve("/root/sub",argv,envp);
+
+}
+
+{% endhighlight %}
+
+gcc 编译成可执行文件 env_test
+
+子进程 新的 NGINX 进程中
+
+{% highlight c %}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (){
+
+   printf("%s\n", getenv("NGINX"));
+   return(0);
+}
+
+{% endhighlight %}
+
+gcc 编译成指定可执行文件 sub, 让父进程里面可以调用。
+
+在shell 中执行 echo $NGINX, 输出内容为空。
+
+然后在shell 中执行 env_test, 可以看到输出的结果为: 123.
+
+由此证明，在 execve() 中 envp 参数里设置的 NGINX 环境变量，会被子进程 sub 通过 getenv()方法读取。
+
