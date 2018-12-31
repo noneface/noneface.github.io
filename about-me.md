@@ -18,7 +18,7 @@ title: About me
 1. <del> Knownsec 实习 </del>
 2. <del> 攒钱买 rMBP </del> 
 3. <del> 经济独立 </del>
-4. Dream Car: BMW M120i
+4. Dream Car: BMW M120i  进度: 1/10
 5. 找对象
 6. 财务自由
 7. 人生意义，价值体现
@@ -29,7 +29,7 @@ title: About me
 
 2018/12/02 17:05 ~ 你应该自信一点。
 
-2018/12/31 16:52 ~ Happy New Year.
+2018/12/31 16:52 ~ Happy New Year. 
 
 不定期更新内容。
 
