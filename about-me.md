@@ -8,7 +8,7 @@ title: About me
     自留地，自由地。
 
 - nonefacesay#gmail.com 
-- Web 安全/ Python 开发
+- Java开发
 - 渣二本 SE
 - 杭州生存中
 - 欢迎留言[disqus(需爬墙)]/邮件
@@ -18,10 +18,12 @@ title: About me
 1. <del> Knownsec 实习 </del>
 2. <del> 攒钱买 rMBP </del> 
 3. <del> 经济独立 </del>
-4. <del> Dream Car: BMW M120i  进度: 1/10 </del>  计划失败?系列停产  二手车?
+4. <del> Dream Car: BMW M120i  进度: 1/10 </del>  
 5. <del> 找对象 </del>
-6. 财务自由
-7. 人生意义，价值体现
+6. 攒钱
+7. 心智突破
+8. 财务自由
+9. 人生意义，价值体现
 
 #### hole
 
@@ -32,6 +34,8 @@ title: About me
 2018/12/31 16:52 ~ Happy New Year. 
 
 2020/02/02 15:02 ~ 平安、稳定。
+
+2020/11/20 10:22 ~ 爱潇潇
 
 不定期更新内容。
 
