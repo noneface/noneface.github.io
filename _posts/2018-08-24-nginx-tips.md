@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nginx (Upgrading Executable on the Fly)
-tag: code
+tag: codes
 ---
 
 ### Nginx
