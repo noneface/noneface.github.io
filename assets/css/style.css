@@ -560,8 +560,7 @@ button:focus-visible {
         top: var(--header-height);
         right: 0;
         bottom: 0;
-        width: 280px;
-        max-width: 85vw;
+        width: min(320px, 90vw);
         flex-direction: column;
         background: var(--color-surface);
         padding: var(--space-lg);
