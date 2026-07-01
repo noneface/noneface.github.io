@@ -595,6 +595,22 @@ button:focus-visible {
     .post-header h1 {
         font-size: var(--font-size-2xl);
     }
+
+    .page-label {
+        display: none;
+    }
+
+    .pagination {
+        flex-wrap: nowrap;
+        gap: var(--space-xs);
+    }
+
+    .pagination a,
+    .pagination span {
+        min-width: 28px;
+        padding: 0 6px;
+        white-space: nowrap;
+    }
 }
 
 /* ============================================
