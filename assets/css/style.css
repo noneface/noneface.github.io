@@ -607,9 +607,11 @@ button:focus-visible {
 
     .pagination a,
     .pagination span {
-        min-width: 28px;
-        padding: 0 6px;
+        min-width: 24px;
+        height: 28px;
+        padding: 0 2px;
         white-space: nowrap;
+        font-size: 0.8rem;
     }
 }
 
