@@ -534,6 +534,11 @@ button:focus-visible {
         --content-max-width: 100%;
     }
 
+    html {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
     body {
         overflow-x: hidden;
     }
@@ -553,23 +558,36 @@ button:focus-visible {
     .site-nav {
         position: fixed;
         top: var(--header-height);
-        left: 0;
         right: 0;
         bottom: 0;
+        width: 280px;
+        max-width: 85vw;
         flex-direction: column;
         background: var(--color-surface);
         padding: var(--space-lg);
         gap: var(--space-xs);
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
         transform: translateX(100%);
         visibility: hidden;
         pointer-events: none;
         transition: transform 0.3s ease, visibility 0.3s;
-        z-index: 99;
+        z-index: 150;
+        overflow-y: auto;
     }
 
     .site-nav.open {
         transform: translateX(0);
         visibility: visible;
+        pointer-events: auto;
+    }
+
+    /* Backdrop overlay when menu is open */
+    body.menu-open::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 149;
         pointer-events: auto;
     }
 

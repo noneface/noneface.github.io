@@ -68,6 +68,7 @@
 
         menuToggle.addEventListener('click', function () {
             var isOpen = siteNav.classList.toggle('open');
+            document.body.classList.toggle('menu-open', isOpen);
             menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             if (menuIcon) {
                 if (isOpen) {
@@ -85,6 +86,7 @@
         for (var i = 0; i < links.length; i++) {
             links[i].addEventListener('click', function () {
                 siteNav.classList.remove('open');
+                document.body.classList.remove('menu-open');
                 menuToggle.setAttribute('aria-expanded', 'false');
                 if (menuIcon) {
                     menuIcon.classList.remove('fa-xmark');
@@ -92,6 +94,20 @@
                 }
             });
         }
+
+        // Close menu when clicking the backdrop overlay
+        document.body.addEventListener('click', function (e) {
+            if (!document.body.classList.contains('menu-open')) return;
+            if (!siteNav.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                siteNav.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                }
+            }
+        });
     }
 
     // ============================
