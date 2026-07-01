@@ -23,7 +23,7 @@ tag: codes
               ┌───────────────────────────────┐
               │                               │
               │    🌍 B: LA 海外 VPS            │
-              │    65.49.208.3                 │
+              │    &lt;B机公网IP&gt;                 │
               │                               │
               │  ┌─────────────────────────┐  │
               │  │  Nginx Proxy Manager    │  │
@@ -73,7 +73,7 @@ tag: codes
 
 ### 组网各层
 
-**DNS**：域名 D 的 A 记录指向 B 的 IP `65.49.208.3`。B 是全站唯一的公网入口。
+**DNS**：域名 D 的 A 记录指向 B 的 IP `&lt;B机公网IP&gt;`。B 是全站唯一的公网入口。
 
 **Nginx Proxy Manager**：B 上的反向代理管理器，负责 SSL 证书（Let's Encrypt 自动续期）和子域名路由。上游地址都是 `127.0.0.1:frps端口`，对 NPM 来说就像在访问本地服务：
 
@@ -91,7 +91,7 @@ tag: codes
 
 ```
 浏览器输入 https://svc1.d.com
-  → DNS 解析 → 65.49.208.3 (B)
+  → DNS 解析 → &lt;B机公网IP&gt; (B)
   → B:443 → NPM (SSL 卸载 + 路由匹配)
   → proxy_pass → 127.0.0.1:9002 (B 本机 frps proxy)
   → frps :9002 → 加密隧道 → frpc (A)
@@ -241,11 +241,11 @@ HTTP_PROXY=http://127.0.0.1:7890
 
 ### 3.2 内网穿透 → frp (frpc)
 
-服务端 frps 跑在 B 机 `65.49.208.3:7000`，用 `auth.token` 认证。本地 frpc 注册 4 条 TCP 隧道：
+服务端 frps 跑在 B 机 `&lt;B机公网IP&gt;:7000`，用 `auth.token` 认证。本地 frpc 注册 4 条 TCP 隧道：
 
 ```toml
 # frpc.toml
-serverAddr = "65.49.208.3"
+serverAddr = "&lt;B机公网IP&gt;"
 serverPort = 7000
 
 [auth]
