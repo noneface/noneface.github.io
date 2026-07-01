@@ -1,29 +1,17 @@
 ---
 layout: default
 ---
-      <div class="row">
-      	<div class="col-md-12 content">
 
-      		<div class="articles">
-      			<div class="articles-title">	
-      				<a href="/">Latest Articles</a>
-      				<small>  &nbsp&nbsp @Noneface</small>
-      				<hr>
-      			</div>
-      			<ul>	
+<div class="article-list-header">
+    <h1>Codes</h1>
+    <small>技术文章</small>
+</div>
 
-      				{% for post in site.tags.codes %}
-
-      				<li>
-      					<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
-      					<a href="{{ post.url }}" title="{{ post.title }}"> {{ post.title}}</a>
-      				</li>
-
-      				{% endfor %}
-
-      			</ul>
-      		</div>
-      		<hr>
-      	</div>
-      </div>
-
+<div class="article-list">
+    {% for post in site.tags.codes %}
+    <div class="article-item">
+        <span class="article-date">{{ post.date | date_to_string }}</span>
+        <a href="{{ post.url }}" class="article-link" title="{{ post.title }}">{{ post.title }}</a>
+    </div>
+    {% endfor %}
+</div>

@@ -1,39 +1,31 @@
 ---
 layout: default
 ---
-<div class="content">
-	<div class="head">
-		<h1>{{ page.title }}</h1>
-		<small style="float:right;margin-right:25px;font-size:15px;">&nbsp&nbsp&nbsp @noneface &nbsp{{ page.date | date_to_string}}</small>
-		<div class="page-text">
-			<hr>
-			<hr>
-			{{ content }}
-			<div id="disqus_thread"></div>
-			<script>
+<article class="post">
+    <header class="post-header">
+        <h1>{{ page.title }}</h1>
+        <div class="post-meta">
+            @noneface · {{ page.date | date_to_string }}
+        </div>
+    </header>
 
-			/**
-			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-			/*
-			var disqus_config = function () {
-			this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-			this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-			};
-			*/
-				(function() { // DON'T EDIT BELOW THIS LINE
-				var d = document, s = d.createElement('script');
-				s.src = 'https://noneface.disqus.com/embed.js';
-				s.setAttribute('data-timestamp', +new Date());
-				(d.head || d.body).appendChild(s);
-				})();
-			</script>
-			<div>
-				<div>
-					<hr>
-					<small style="margin-left:35%;">Follow your heart &nbsp;| &nbsp; nonefacesay@gmail.com</small>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>		
+    <div class="post-content">
+        {{ content }}
+    </div>
+
+    <section class="disqus-section">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = '{{ site.url }}{{ page.url }}';
+                this.page.identifier = '{{ page.url }}';
+            };
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://noneface.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    </section>
+</article>

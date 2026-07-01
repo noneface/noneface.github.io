@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/jquery.mmenu.all.css">
-	<link rel="stylesheet" type="text/css" href="/css/pygments.css">
-	<link href="/css/font-awesome.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<style type="text/css">
-		body{
-			font-family: Consolas
-		}
-	</style>
-	<title>Noneface | Hack4fun</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Noneface 的技术博客 — 后端研发、安全、工程实践">
+    <meta name="author" content="Noneface">
+    <meta property="og:title" content="Noneface | Hack4fun">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://noneface.github.io">
+    <meta property="og:description" content="精于一而悟道">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/pygments.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <title>{% if page.title %}{{ page.title }} — {% endif %}Noneface | Hack4fun</title>
 </head>
 <body>
-	<nav id="my-menu">
-		<div class="my-menu"> 
-			<div class="img">		
-				<img class="img-circle" src="/images/head1.png">
-			</div>
-			<h4>Noneface | Hack4fun</h4>
-			<ul>
-				<li><a href="/" ><i class="fa fa-home"></i>Home</a></li>
-				<li><a href="/codes.html" ><i class="fa fa-file-code-o"></i>Codes</a></li>
-				<li><a href="/notes.html" ><i class="fa fa-pencil-square-o"></i>Notes</a></li>
-				<li><a href="/about-me.html" ><i class="fa fa-user"></i>About me</a></li>
-			</ul>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="site-brand">
+                <img src="/images/head1.png" alt="Noneface" class="brand-avatar">
+                <span class="brand-name">Noneface</span>
+            </a>
+            <nav class="site-nav" id="site-nav">
+                <a href="/" class="nav-link"><i class="fa-solid fa-home"></i> Home</a>
+                <a href="/codes.html" class="nav-link"><i class="fa-solid fa-code"></i> Codes</a>
+                <a href="/notes.html" class="nav-link"><i class="fa-solid fa-pen"></i> Notes</a>
+                <a href="/about-me.html" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-			<div class="link">
-			
-			<a target="_new" href="http://www.github.com/noneface"><i class="fa fa-github"></i></a>
-			<a target="_new" href="http://weibo.com/noneface"><i class="fa fa-weibo"></i></a>
-			<a target="_new" href="http://www.zhihu.com"><i class="fa fa-leanpub"></i></a>
-			</div>
-			<h5>精 于 一 而 悟 道</h5>
-		</div>
-</nav>
+    <main class="site-content">
+        {{ content }}
+    </main>
 
-<div class="menu-button" href="#menu" style="outline:none;">
-	<i class="fa fa-bars" style="font-size:40px;"></i>
-</div>
-<div class="container-fluid">
-	{{ content }}
-</div>
-<script src="/css/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="/css/jquery.mmenu.min.all.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#my-menu").mmenu().on( "closed.mm", function() {
-			$(".menu-button").show();
-		});
-		$(".menu-button").click(function() {
-			$(".menu-button").hide();
-			$("#my-menu").trigger("open.mm");
-		});
-	});
-</script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://github.com/noneface" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+                <a href="https://weibo.com/noneface" target="_blank" rel="noopener"><i class="fa-brands fa-weibo"></i></a>
+            </div>
+            <p class="footer-motto">精 于 一 而 悟 道</p>
+            <p class="footer-copy">Follow your heart &nbsp;|&nbsp; nonefacesay@gmail.com</p>
+        </div>
+    </footer>
 
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>

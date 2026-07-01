@@ -1,11 +1,21 @@
 title: Noneface
 email: nonefacesay@gmail.com
-baseurl: /  # the subpath of your site, e.g. /blog/
-github_username:  noneface
+description: Noneface 的技术博客 — 后端研发、安全、工程实践
+url: https://noneface.github.io
+github_username: noneface
 markdown: kramdown
-paginate: 13
-paginate_path: "/page:num" 
-# pygments: True
 highlighter: rouge
-gems: [jekyll-paginate]
+paginate: 13
+paginate_path: "/page:num"
+plugins:
+  - jekyll-paginate
 comments: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - CLAUDE.md
+  - .claude/
+  - .hermes/
+  - README.md
+  - vendor/

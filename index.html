@@ -1,43 +1,39 @@
 ---
 layout: default
 ---
-<div class="row">
-  <div class="col-md-12 content">
-    <div class="articles">
-      <div class="articles-title">	
-        <a href="/">Latest Posts</a>
-        <small>  &nbsp;&nbsp; nonefacesay@gmail.com</small>
-        <hr>
-      </div>
-      <ul>
-        {% for post in paginator.posts %}
-        <li>
-          <span class="date">{{ post.date | date_to_string }}&nbsp;~&nbsp;</span>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-      </ul> 
-      <hr>
-      {% if paginator.total_pages > 1 %}
-      <!-- 分页代码 -->
-      {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">上一页</a>
-      {% endif %}
-      {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-      <span class="active">{{ page }}</span>
-      {% elsif page == 1 %}
-      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-      {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-      {% endif %}
-      {% endfor %}
-      {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页</a>
-      {% endif %}
-      {% endif %}
-  
-    </div>
-  </div>
+
+<div class="article-list-header">
+    <h1><a href="/">Latest Posts</a></h1>
+    <small>nonefacesay@gmail.com</small>
 </div>
 
+<div class="article-list">
+    {% for post in paginator.posts %}
+    <div class="article-item">
+        <span class="article-date">{{ post.date | date_to_string }}</span>
+        <a href="{{ post.url }}" class="article-link">{{ post.title }}</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">← 上一页</a>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+    <span class="active">{{ page }}</span>
+    {% elsif page == 1 %}
+    <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+    <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页 →</a>
+    {% endif %}
+</nav>
+{% endif %}

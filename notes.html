@@ -1,24 +1,17 @@
 ---
 layout: default
 ---
-<div class="row">
-	<div class="col-md-12 content">
-		<div class="articles">
-			<div class="articles-title">	
-				<a href="/">Latest Articles</a>
-				<small>  &nbsp&nbsp @Noneface</small>
-				<hr>
-			</div>
-			<ul>	
-				{% for post in site.tags.notes %}
-				<li>
-					<span class="date"><span>{{ post.date | date_to_string }}~</span></span>
-					<a href="{{ post.url }}" title="{{ post.title }}"> {{ post.title}}</a>
-				</li>
-				{% endfor %}
-			</ul> 
-			<hr>
-		</div>
-	</div>
+
+<div class="article-list-header">
+    <h1>Notes</h1>
+    <small>随笔 · 杂记</small>
 </div>
 
+<div class="article-list">
+    {% for post in site.tags.notes %}
+    <div class="article-item">
+        <span class="article-date">{{ post.date | date_to_string }}</span>
+        <a href="{{ post.url }}" class="article-link" title="{{ post.title }}">{{ post.title }}</a>
+    </div>
+    {% endfor %}
+</div>
