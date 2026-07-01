@@ -1,25 +1,20 @@
 /**
  * Noneface Blog — Main JavaScript
- * Dark mode toggle + Mobile nav menu
+ * Dark mode toggle + Mobile nav menu + Active nav + a11y
  * Zero dependencies
  */
 (function () {
     'use strict';
 
-    // ============================
-    // Dark Mode Toggle
-    // ============================
     var STORAGE_KEY = 'theme';
     var DARK_CLASS = 'dark';
     var html = document.documentElement;
     var toggleBtn = document.getElementById('theme-toggle');
     var toggleIcon = toggleBtn ? toggleBtn.querySelector('i') : null;
 
-    function getPreferredTheme() {
-        var stored = localStorage.getItem(STORAGE_KEY);
-        if (stored === DARK_CLASS || stored === 'light') return stored;
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK_CLASS : 'light';
-    }
+    // ============================
+    // Dark Mode Toggle
+    // ============================
 
     function applyTheme(theme) {
         if (theme === DARK_CLASS) {
@@ -45,9 +40,22 @@
     }
 
     if (toggleBtn) {
-        applyTheme(getPreferredTheme());
+        // FOUC prevention (inline <head> script) handles initial theme;
+        // sync icon state here
+        if (html.hasAttribute('data-theme')) {
+            if (toggleIcon) {
+                toggleIcon.classList.remove('fa-moon');
+                toggleIcon.classList.add('fa-sun');
+            }
+        }
         toggleBtn.addEventListener('click', toggleTheme);
     }
+
+    // Respond to OS-level theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (localStorage.getItem(STORAGE_KEY)) return; // user preference overrides OS
+        applyTheme(e.matches ? DARK_CLASS : 'light');
+    });
 
     // ============================
     // Mobile Nav Menu
@@ -56,16 +64,18 @@
     var siteNav = document.getElementById('site-nav');
 
     if (menuToggle && siteNav) {
+        var menuIcon = menuToggle.querySelector('i');
+
         menuToggle.addEventListener('click', function () {
             var isOpen = siteNav.classList.toggle('open');
-            var icon = menuToggle.querySelector('i');
-            if (icon) {
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            if (menuIcon) {
                 if (isOpen) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-xmark');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
                 } else {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
                 }
             }
         });
@@ -75,12 +85,25 @@
         for (var i = 0; i < links.length; i++) {
             links[i].addEventListener('click', function () {
                 siteNav.classList.remove('open');
-                var icon = menuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
                 }
             });
+        }
+    }
+
+    // ============================
+    // Active Nav Link
+    // ============================
+    var navLinks = document.querySelectorAll('.nav-link');
+    var currentPath = window.location.pathname;
+    for (var j = 0; j < navLinks.length; j++) {
+        var href = navLinks[j].getAttribute('href');
+        if (href === currentPath || (href !== '/' && currentPath.indexOf(href) === 0)) {
+            navLinks[j].classList.add('active');
+            break;
         }
     }
 })();
