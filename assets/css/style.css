@@ -356,6 +356,15 @@ button:focus-visible {
 
 .post-content p {
     margin-bottom: var(--space-md);
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Prevent content from blowing out layout on narrow screens */
+.post-content {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
 }
 
 .post-content ul,
@@ -391,6 +400,8 @@ button:focus-visible {
     padding: 0.15em 0.4em;
     background: var(--color-code-bg);
     border-radius: 4px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .post-content pre {
@@ -401,6 +412,8 @@ button:focus-visible {
     overflow-x: auto;
     font-size: var(--font-size-sm);
     line-height: 1.6;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .post-content pre code {
@@ -409,11 +422,22 @@ button:focus-visible {
 }
 
 .post-content table {
+    display: block;
     width: 100%;
+    max-width: 100%;
     margin: var(--space-md) 0;
     border-collapse: collapse;
     font-size: var(--font-size-sm);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
+/* Preserve internal table layout when parent is display:block */
+.post-content thead { display: table-header-group; }
+.post-content tbody { display: table-row-group; }
+.post-content tfoot { display: table-footer-group; }
+.post-content tr { display: table-row; }
+.post-content th,
+.post-content td { display: table-cell; }
 
 .post-content th,
 .post-content td {
