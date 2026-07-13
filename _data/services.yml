@@ -1,24 +1,44 @@
-- name: Hermes WebUI
-  icon: fa-robot
-  url: http://localhost:8787
-  desc: AI Agent 交互界面
-
 - name: IChing Vis
   icon: fa-book-open
-  url: http://localhost:8788
+  url: https://ching.noneface.cc
   desc: 周易占卜 · 六爻起卦
-
-- name: LiteLLM Proxy
-  icon: fa-bolt
-  url: http://localhost:4000
-  desc: LLM API 代理网关
-
-- name: STL Viewer
-  icon: fa-cube
-  url: http://localhost:6688
-  desc: 3D 打印模型预览
 
 - name: Poop Tracker
   icon: fa-chart-simple
-  url: http://localhost:8789
+  url: https://poop.noneface.cc
   desc: 健康数据追踪
+
+- name: "3x 控制面板"
+  icon: fa-gauge-high
+  url: https://3x.noneface.cc
+  desc: 服务管理后台
+
+- name: File Browser
+  icon: fa-folder-open
+  url: https://fb.noneface.cc
+  desc: 文件管理
+
+- name: NPM
+  icon: fa-shield-halved
+  url: https://npm.noneface.cc
+  desc: Nginx 反向代理管理
+
+- name: Supervisord
+  icon: fa-server
+  url: https://spd.noneface.cc
+  desc: 进程守护管理
+
+# - name: Hermes WebUI
+#   icon: fa-robot
+#   url: http://localhost:8787
+#   desc: AI Agent 交互界面
+#
+# - name: LiteLLM Proxy
+#   icon: fa-bolt
+#   url: http://localhost:4000
+#   desc: LLM API 代理网关
+#
+# - name: STL Viewer
+#   icon: fa-cube
+#   url: http://localhost:6688
+#   desc: 3D 打印模型预览
