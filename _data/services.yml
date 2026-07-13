@@ -1,0 +1,24 @@
+- name: Hermes WebUI
+  icon: fa-robot
+  url: http://localhost:8787
+  desc: AI Agent 交互界面
+
+- name: IChing Vis
+  icon: fa-book-open
+  url: http://localhost:8788
+  desc: 周易占卜 · 六爻起卦
+
+- name: LiteLLM Proxy
+  icon: fa-bolt
+  url: http://localhost:4000
+  desc: LLM API 代理网关
+
+- name: STL Viewer
+  icon: fa-cube
+  url: http://localhost:6688
+  desc: 3D 打印模型预览
+
+- name: Poop Tracker
+  icon: fa-chart-simple
+  url: http://localhost:8789
+  desc: 健康数据追踪

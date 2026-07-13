@@ -2,38 +2,41 @@
 layout: default
 ---
 
-<div class="article-list-header">
-    <h1><a href="/">Latest Posts</a></h1>
-    <small>nonefacesay@gmail.com</small>
-</div>
+<div class="dashboard">
+  <header class="dashboard-header">
+    <img src="/images/head1.png" alt="" class="dashboard-avatar">
+    <h1 class="dashboard-title">Noneface</h1>
+    <p class="dashboard-subtitle">精于一而悟道</p>
+  </header>
 
-<div class="article-list">
-    {% for post in paginator.posts %}
-    <div class="article-item">
-        <span class="article-date">{{ post.date | date_to_string }}</span>
-        <a href="{{ post.url }}" class="article-link">{{ post.title }}</a>
+  <div class="service-grid">
+    {% for svc in site.data.services %}
+    <a href="{{ svc.url }}" class="service-card" target="_blank" rel="noopener">
+      <div class="service-card-icon">
+        <i class="fa-solid {{ svc.icon }}"></i>
+      </div>
+      <div class="service-card-info">
+        <span class="service-card-name">{{ svc.name }}</span>
+        <span class="service-card-desc">{{ svc.desc }}</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <section class="recent-posts">
+    <h2 class="recent-posts-heading">最近文章</h2>
+    <div class="recent-posts-list">
+      {% for post in site.posts limit:5 %}
+      <a href="{{ post.url }}" class="recent-post-item">
+        <span class="recent-post-title">{{ post.title }}</span>
+        <span class="recent-post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      </a>
+      {% endfor %}
     </div>
-    {% endfor %}
+    <div class="recent-posts-footer">
+      <a href="/codes.html">技术文章</a>
+      <span class="recent-posts-sep">·</span>
+      <a href="/notes.html">随笔杂记</a>
+    </div>
+  </section>
 </div>
-
-{% if paginator.total_pages > 1 %}
-<nav class="pagination">
-    {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">← <span class="page-label">上一页</span></a>
-    {% endif %}
-
-    {% for page in (1..paginator.total_pages) %}
-    {% if page == paginator.page %}
-    <span class="active">{{ page }}</span>
-    {% elsif page == 1 %}
-    <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-    {% else %}
-    <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-    {% endif %}
-    {% endfor %}
-
-    {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"><span class="page-label">下一页</span> →</a>
-    {% endif %}
-</nav>
-{% endif %}

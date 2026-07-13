@@ -318,6 +318,182 @@ button:focus-visible {
 }
 
 /* ============================================
+   Dashboard (Homepage)
+   ============================================ */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xl);
+    padding-top: var(--space-xl);
+    max-width: 860px;
+}
+
+.dashboard-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.dashboard-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow-md);
+}
+
+.dashboard-title {
+    font-size: var(--font-size-3xl);
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+.dashboard-subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.15em;
+}
+
+/* Service grid — app launcher style cards */
+.service-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    width: 150px;
+    padding: var(--space-lg) var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.service-card-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: var(--color-code-bg);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    transition: background 0.2s, color 0.2s;
+}
+
+.service-card:hover .service-card-icon {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.service-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.service-card-name {
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    text-align: center;
+    line-height: 1.3;
+}
+
+.service-card-desc {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Recent posts teaser */
+.recent-posts {
+    width: 100%;
+    max-width: 500px;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.recent-posts-heading {
+    font-size: var(--font-size-sm);
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.recent-posts-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.recent-post-item:last-child {
+    border-bottom: none;
+}
+
+.recent-post-title {
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recent-post-item:hover .recent-post-title {
+    color: var(--color-primary);
+}
+
+.recent-post-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    margin-left: var(--space-md);
+    font-family: var(--font-mono);
+}
+
+.recent-posts-footer {
+    text-align: center;
+    margin-top: var(--space-md);
+    font-size: var(--font-size-sm);
+}
+
+.recent-posts-sep {
+    color: var(--color-border);
+    margin: 0 var(--space-sm);
+}
+
+/* ============================================
    Post / Article Page
    ============================================ */
 .post-header {
@@ -657,6 +833,38 @@ button:focus-visible {
         padding: 0 2px;
         white-space: nowrap;
         font-size: 0.8rem;
+    }
+
+    /* Dashboard */
+    .dashboard {
+        gap: var(--space-xl);
+        padding-top: var(--space-md);
+    }
+
+    .dashboard-avatar {
+        width: 64px;
+        height: 64px;
+    }
+
+    .dashboard-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    .service-card {
+        width: calc(50% - var(--space-md));
+        max-width: 160px;
+        padding: var(--space-md) var(--space-sm);
+    }
+
+    .service-card-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+        border-radius: 12px;
+    }
+
+    .recent-posts {
+        max-width: 100%;
     }
 }
 
